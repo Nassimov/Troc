@@ -1,0 +1,28 @@
+<?xml version ="1.0" encoding="UTF-8" standalone="no" ?>
+<!-- <!Doctype fichierXML SYSTEM "final.dtd">  -->
+	<file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./final.xsd">
+			<header idF="2336">
+				<nbMsg>1233</nbMsg>
+				<transmitter idUser="123">yasser</transmitter>
+				<receiver idUser="876">Mandela</receiver>
+				<authRef>Bachar</authRef>
+				<authDate>2020-12-12T00:00:00</authDate>
+			</header>
+			<body>
+				<listMsg>
+					<message idMsg="M344">
+						<dateMsg>2000-11-13T12:34:55</dateMsg>
+						<validityDuration>P8Y</validityDuration>
+							<cat>
+								<idCatRequestMsg></idCatRequestMsg>
+								<catDate>2005-11-13T12:34:55</catDate>
+								<object idObject="123">
+									<objectName></objectName>
+									<objectDetails></objectDetails>
+									<objectImage></objectImage>
+								</object>
+							</cat>
+
+				</listMsg>
+			</body>
+	</file>
