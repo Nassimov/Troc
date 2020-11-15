@@ -1,36 +1,36 @@
-<?xml version ="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- <!Doctype fichierXML SYSTEM "final.dtd">  -->
-	<file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./final.xsd">
-			<header idF="2336">
-				<nbMsg>1233</nbMsg>
-				<transmitter idUser="123">yasser</transmitter>
-				<receiver idUser="876">Mandela</receiver>
-				<authRef>Bachar</authRef>
-				<authDate>2020-12-12T00:00:00</authDate>
-			</header>
-			<body>
-				<listMsg>
-					<message idMsg="M344">
-						<dateMsg>2000-11-13T12:34:55</dateMsg>
-						<validityDuration>P8Y</validityDuration>
-							<barter>
-							<rcvObjectList>
-								<object idObject="0987">
-									<objectName>montre</objectName>
-									<objectDetails> une montre en or</objectDetails>
-									<objectImage>maronn</objectImage> 
-								</object>
-							</rcvObjectList>
-							<sndObjectList>
-									<object idObject="0654">
-										<objectName>mocassin</objectName>
-										<objectDetails> de londre </objectDetails>
-										<objectImage>bleu</objectImage> 
-									</object>
-							</sndObjectList>
-							<idPrevMsg></idPrevMsg>
-						</barter>
-					</message>
-				</listMsg>
-			</body>
-	</file>
+<file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./final.xsd">
+	<header idF="2336">
+		<nbMsg>1233</nbMsg>
+		<transmitter idUser="123">yasser</transmitter>
+		<receiver idUser="876">Mandela</receiver>
+		<authRef>Bachar</authRef>
+		<authDate>2020-12-12T00:00:00</authDate>
+	</header>
+	<body>
+		<listMsg>
+			<message idMsg="M344">
+				<dateMsg>2000-11-13T12:34:55</dateMsg>
+				<validityDuration>P8Y</validityDuration>
+				<barter>
+					<rcvObjectList>
+						<object idObject="0987">
+							<objectName>montre</objectName>
+							<objectDetails> une montre en or</objectDetails>
+							<objectImage>maronn</objectImage>
+						</object>
+					</rcvObjectList>
+					<sndObjectList>
+						<object idObject="0654">
+							<objectName>mocassin</objectName>
+							<objectDetails> de londre </objectDetails>
+							<objectImage>bleu</objectImage>
+						</object>
+					</sndObjectList>
+					<idPrevMsg></idPrevMsg>
+				</barter>
+			</message>
+		</listMsg>
+	</body>
+</file>
