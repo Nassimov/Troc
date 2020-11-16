@@ -14,86 +14,61 @@
 
 
 <div class="container">
-    <div>Gérérer un fichier XML</div>
-    <form action="" method="post">
+    <b>Création d'un objet
+    </b>
+    <br>
+    <form data-th-action="@{addObject}" method="post" enctype='multipart/form-data'>
             <div class="row">
             
             
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                   Id du fichier: <input type="text" name="idF">
+                   Nom de l'objet: <input type="text" name="objectName">
                 </div >
                 <!-- <div class="col-lg-6 col-md-6 col-sm-12">
                   Nombre de messages <input type="number" name="nbMsg" min="1">
                 </div> -->
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                  Nom de l'emetteur <input type="text" name="trasmitter">
+                  Details de l'objet <input type="text" name="objectDetail">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    Nom du receveur <input type="text" name="receiver">
+                    Image de l'objet <input type="file" name="objectImage" accept="image/png, image/jpeg">
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Réference d'authorisation <input type="text" name="authRef">
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Date de l'authorisation <input type="datetime-local" name="authDate">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'emetteur <input type="text" name="trasmitter">
-                </div>
+               
                 <div class="col-lg-12 col-md-12 col-sm-12">
-<button type="submit" class="btn btn-success" >Success</button>
+<button type="submit" class="btn btn-success" >Créer l'object</button>
                 </div>
                 
             
             
             
             </div>
+    </form>
+    <br>
+    <div class="divider"></div>
+    <b>Création d'un utilisateur</b>
+    <br>
+    <form action="" method="post">
+        <div class="row">
+    
+    
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                Nom de l'utilisateur: <input type="text" name="name">
+            </div>
+            <!-- <div class="col-lg-6 col-md-6 col-sm-12">
+                      Nombre de messages <input type="number" name="nbMsg" min="1">
+                    </div> -->
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                prénom de l'utilisateur <input type="text" name="lastName">
+            </div>
+    
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <button type="submit" class="btn btn-success">Créer l'utilisateur</button>
+            </div>
+    
+    
+    
+    
+        </div>
     </form>
 
 </div>
