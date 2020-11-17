@@ -7,20 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import troc.project.troc.model.UserTroc;
-import troc.project.troc.repositories.UserTrocRepository;
+import troc.project.troc.model.Deny;
+import troc.project.troc.repositories.DenyRepository;
 
 @Controller
-public class UserController {
+public class DenyController {
 
     @Autowired
-    UserTrocRepository userRepositories;
+    DenyRepository denyRepositories;
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUser(@RequestParam String name, @RequestParam String lastName, Model m) {
+    @RequestMapping(value = "/addDenyResponse", method = RequestMethod.POST)
+    public String addDenyResponse(@RequestParam String idPropositionMsg, @RequestParam String reason, Model m) {
 
-        UserTroc user = new UserTroc(name, lastName);
-        userRepositories.save(user);
+        denyRepositories.save(new Deny(idPropositionMsg, reason));
         return "redirect:/";
     }
 
