@@ -7,21 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import troc.project.troc.model.UserTroc;
-import troc.project.troc.repositories.UserTrocRepository;
+import troc.project.troc.model.NoCat;
+import troc.project.troc.repositories.NoCatRepository;
 
 @Controller
-public class UserController {
+public class NoCatController {
 
     @Autowired
-    UserTrocRepository userRepositories;
+    NoCatRepository noCatRepository;
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUser(@RequestParam String name, @RequestParam String lastName, Model m) {
-
-        UserTroc user = new UserTroc(name, lastName);
-        userRepositories.save(user);
+    @RequestMapping(value = "/addNoCat", method = RequestMethod.POST)
+    public String addNoCat(@RequestParam String reason, @RequestParam Long idCatRequestMsg, Model m) {
+        noCatRepository.save(new NoCat(idCatRequestMsg, reason));
         return "redirect:/";
     }
-
 }
