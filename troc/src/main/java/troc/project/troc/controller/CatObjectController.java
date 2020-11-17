@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import troc.project.troc.model.Cat;
 import troc.project.troc.model.CatObjects;
-import troc.project.troc.model.Deny;
 import troc.project.troc.model.Object;
-import troc.project.troc.model.UserTroc;
 import troc.project.troc.repositories.CatObjectRepository;
 import troc.project.troc.repositories.CatRepository;
 import troc.project.troc.repositories.ObjectRepository;

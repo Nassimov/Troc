@@ -26,6 +26,8 @@ public class ObjectController {
     @RequestMapping(value = "/addObject", method = RequestMethod.POST)
     public String addObject(@RequestParam String objectName, @RequestParam String objectDetail,
             @RequestParam("objectImage") MultipartFile objectImage, Model m) throws IOException {
+
+        System.out.println("#####");
         System.out.println(objectDetail);
         System.out.println(objectName);
         String fileName = StringUtils.cleanPath(objectImage.getOriginalFilename());
