@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import troc.project.troc.model.NoCat;
 import troc.project.troc.model.Object;
 import troc.project.troc.model.ObjectSNDList;
 import troc.project.troc.model.SndObjectList;
-import troc.project.troc.repositories.NoCatRepository;
 import troc.project.troc.repositories.ObjectRepository;
 import troc.project.troc.repositories.ObjectSNDListRepository;
 import troc.project.troc.repositories.SndObjectListRepository;

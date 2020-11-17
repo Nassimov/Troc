@@ -1,5 +1,7 @@
 package troc.project.troc.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +20,10 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long idMessage;
     @OneToOne
-    Accept accept;
+    Accept accept = null;
     @OneToOne
     Auth auth;
-    @Column(name = "authRequest")
+    @Column(name = "authRequest", nullable = true)
     Long authRequest;
     @OneToOne
     Barter barter;
@@ -42,14 +44,16 @@ public class Message {
     Request request;
     @Column(name = "validityDuration")
     Long validityDuration;
+    @Column(name = "messageDate")
+    Date messageDate;
 
     public Message() {
 
     }
 
     public Message(Accept accept, Auth auth, Long authRequest, Barter barter, Cat cat, Long catRequest, Deny deny,
-            Donation donation, ErrorMessage errorMessage, Long messageID, NoCat noCat, Request request,
-            Long validityDuration) {
+            Donation donation, ErrorMessage errorMessage, NoCat noCat, Request request, Long validityDuration,
+            Date messageDAte) {
         this.accept = accept;
         this.auth = auth;
         this.authRequest = authRequest;
@@ -62,5 +66,6 @@ public class Message {
         this.noCat = noCat;
         this.request = request;
         this.validityDuration = validityDuration;
+        this.messageDate = messageDAte;
     }
 }

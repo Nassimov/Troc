@@ -287,7 +287,7 @@
       <form data-th-action="@{addObjectRCVList}" method="post">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12">
-            Listes object envoyés :
+            Listes object reçu :
             <select name="rcvObjList">
               <option
                 th:each="rcvobjl : ${rcvObjectList}"
@@ -316,6 +316,325 @@
           </div>
         </div>
       </form>
+
+      <br />
+      <div class="divider"></div>
+      <b>Ajouter une requete</b>
+      <br />
+      <form data-th-action="@{addRequest}" method="post">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Listes object reçu :
+            <select name="rcvObjList">
+              <option
+                th:each="rcvobjl : ${rcvObjectList}"
+                th:value="${rcvobjl.getIdRcvObjectList()}"
+              >
+                [[ ${rcvobjl.getIdRcvObjectList()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+        
+          id Message précédent :  <input type="number" name="idPrevMsg" min="1" required>
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-success">
+              Créer la request
+            </button>
+          </div>
+        </div>
+      </form>
+
+
+
+
+
+
+
+
+
+
+    <br />
+    <div class="divider"></div>
+    <b>Ajouter un troc (Barter) </b>
+    <br />
+    <form data-th-action="@{addBarter}" method="post">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                Listes object reçu :
+                <select name="rcvObjList">
+                    <option th:each="rcvobjl : ${rcvObjectList}" th:value="${rcvobjl.getIdRcvObjectList()}">
+                        [[ ${rcvobjl.getIdRcvObjectList()} ]]
+                    </option>
+                </select>
+            </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            Listes object envoyés :
+            <select name="sndObjList">
+                <option th:each="sndobjl : ${sndObjectList}" th:value="${sndobjl.getIdSndObjectList()}">
+                    [[ ${sndobjl.getIdSndObjectList()} ]]
+                </option>
+            </select>
+        </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+    
+                id Message précédent : <input type="number" name="idPrevMsg" min="1" required>
+            </div>
+    
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <button type="submit" class="btn btn-success">
+                    Créer le Barter (Troc)
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <br />
+        <div class="divider"></div>
+        <b>Ajouter une donation </b>
+        <br />
+        <form data-th-action="@{addDonation}" method="post">
+            <div class="row">
+               
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    Listes object envoyés :
+                    <select name="sndObjList">
+                        <option th:each="sndobjl : ${sndObjectList}" th:value="${sndobjl.getIdSndObjectList()}">
+                            [[ ${sndobjl.getIdSndObjectList()} ]]
+                        </option>
+                    </select>
+                </div>
+        
+                <div class="col-lg-6 col-md-6 col-sm-12">
+        
+                    id Message précédent : <input type="number" name="idPrevMsg" min="1" required>
+                </div>
+        
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button type="submit" class="btn btn-success">
+                        Créer la Donation
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+
+
+        <br />
+        <div class="divider"></div>
+        <b>Ajouter une acceptation(Accept) </b>
+        <br />
+        <form data-th-action="@{addAccept}" method="post">
+            <div class="row">
+    
+        
+                <div class="col-lg-6 col-md-6 col-sm-12">
+        
+                    id proposition précédente : <input type="number" name="idPropositionMsg" min="1" required>
+                </div>
+        
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button type="submit" class="btn btn-success">
+                        Créer Une acceptation( Accept)
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+
+
+
+        <br />
+        <div class="divider"></div>
+        <b>Ajouter un message d'erreur </b>
+        <br />
+        <form data-th-action="@{addErrorMessage}" method="post">
+            <div class="row">
+        
+        
+                
+        
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button type="submit" class="btn btn-success">
+                        Créer un message d'erreur
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- créer un Message : -->
+
+
+
+
+
+
+
+
+
+        <br />
+        <div class="divider"></div>
+        <b>Ajouter un message  </b>
+        <br />
+        <form data-th-action="@{addMessage}" method="post">
+            <div class="row">
+        
+<div class="col-lg-6 col-md-6 col-sm-12">
+Accept :
+<select name="accept">
+    <option selected value="0"></option>
+    <option th:each="acc : ${acceptList}" th:value="${acc.getIdAccept()}">
+        [[ ${acc.getIdPropositionMsg()} ]]
+    </option>
+</select>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+    Authentification :
+    <select name="auth">
+        <option selected value="0"></option>
+        <option th:each="authAuth : ${authList}" th:value="${authAuth.getIdAuth()}">
+            [[ ${authAuth.getAuthRef()} ]] [[ ${authAuth.getAuthDate()} ]]
+        </option>
+    </select>
+</div>
+        
+<div class="col-lg-6 col-md-6 col-sm-12">
+Auth Request : 
+<input type="number" name="authRequest" id="" min="1">
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+    Barter :
+    <select name="barter">
+        <option selected value="0"></option>
+        <option th:each="barter : ${barterList}" th:value="${barter.getIdBarter()}">
+           id prev message : [[ ${barter.getIdPrevMsg()} ]]
+        </option>
+    </select>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+Cat  :
+<select name="cat">
+    <option selected value="0"></option>
+    <option th:each="catcat : ${catList}" th:value="${catcat.getIdCat()}">
+    [[ ${catcat.getCatDate()} ]]
+    
+    </option>
+</select>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+Cat Request:
+<input type="number" name="catRequest" id="" min="1">
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+Deny
+<select name="deny">
+    <option selected value="0"></option>
+    <option th:each="denydeny : ${denyList}" th:value="${denydeny.getIdDeny()}">
+       id prev message  : [[ ${denydeny.getIdPropositionMsg()} ]] raison :[[ ${denydeny.getReason()} ]]
+
+    </option>
+</select>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+Donation
+<select name="donation">
+    <option selected value="0"></option>
+    <option th:each="donationdonation : ${donationList}" th:value="${donationdonation.getIdDonation()}">
+      id prev message :[[ ${donationdonation.getIdPrevMsg()} ]] 
+
+    </option>
+</select>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+Message d'erreur :
+<select name="errorMessage">
+    <option selected value="0"></option>
+    <option th:each="error : ${errorMessageList}" th:value="${error.getIdErrorMessage()}">
+        [[ ${error.getIdErrorMessage()} ]]
+
+    </option>
+</select>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+No Cat : 
+<select name="noCat">
+    <option selected value="0"></option>
+    <option th:each="noCatNoCat : ${notCatList}" th:value="${noCatNoCat.getNoCatId()}">
+        id Cat request message :[[ ${noCatNoCat.getIdCatRequestMsg()} ]] , reason :[[ ${noCatNoCat.getReason()} ]]
+
+    </option>
+</select>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+Request :
+<select name="request">
+    <option selected value="0"></option>
+    <option th:each="req : ${requestList}" th:value="${req.getRequestId()}">
+        id prev message :[[ ${req.getIdPrevMsg()} ]]
+
+    </option>
+</select>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+Durée de validité:
+<input type="number" name="validityDuration" id="" min="1">
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+    Date du message :
+    <input type="date" name="messageDate" required>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+    Heure du message:
+    <input type="time" name="messageTime"  required>
+</div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button type="submit" class="btn btn-success">
+                        Créer un message
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
     </div>
 
     <script

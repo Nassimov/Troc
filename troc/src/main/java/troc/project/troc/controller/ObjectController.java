@@ -27,9 +27,6 @@ public class ObjectController {
     public String addObject(@RequestParam String objectName, @RequestParam String objectDetail,
             @RequestParam("objectImage") MultipartFile objectImage, Model m) throws IOException {
 
-        System.out.println("#####");
-        System.out.println(objectDetail);
-        System.out.println(objectName);
         String fileName = StringUtils.cleanPath(objectImage.getOriginalFilename());
 
         fileService.uploadFile(objectImage);
