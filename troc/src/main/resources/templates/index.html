@@ -22,16 +22,16 @@
             
             
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                   Nom de l'objet: <input type="text" name="objectName">
+                   Nom de l'objet: <input type="text" name="objectName" required>
                 </div >
                 <!-- <div class="col-lg-6 col-md-6 col-sm-12">
                   Nombre de messages <input type="number" name="nbMsg" min="1">
                 </div> -->
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                  Details de l'objet <input type="text" name="objectDetail">
+                  Details de l'objet <input type="text" name="objectDetail" required>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    Image de l'objet <input type="file" name="objectImage" accept="image/png, image/jpeg">
+                    Image de l'objet <input type="file" name="objectImage" accept="image/png, image/jpeg" required>
                 </div>
                
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -47,18 +47,18 @@
     <div class="divider"></div>
     <b>Création d'un utilisateur</b>
     <br>
-    <form action="" method="post">
+    <form data-th-action="@{addUser}" method="post">
         <div class="row">
     
     
             <div class="col-lg-6 col-md-6 col-sm-12">
-                Nom de l'utilisateur: <input type="text" name="name">
+                Nom de l'utilisateur: <input type="text" name="name" required>
             </div>
             <!-- <div class="col-lg-6 col-md-6 col-sm-12">
                       Nombre de messages <input type="number" name="nbMsg" min="1">
                     </div> -->
             <div class="col-lg-6 col-md-6 col-sm-12">
-                prénom de l'utilisateur <input type="text" name="lastName">
+                prénom de l'utilisateur <input type="text" name="lastName" required>
             </div>
     
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -70,7 +70,139 @@
     
         </div>
     </form>
+    <br>
+    <div class="divider"></div>
+    <b>Création d'une réponse deny</b>
+    <br>
+    <form data-th-action="@{addDenyResponse}" method="post">
+        <div class="row">
+    
+    
+    
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                l'id du message de proposition : <input type="number" name="idPropositionMsg" required>
+            </div>
+            <!-- <div class="col-lg-6 col-md-6 col-sm-12">
+                          Nombre de messages <input type="number" name="nbMsg" min="1">
+                        </div> -->
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                raison:  <textarea name="reason" id="" cols="30" rows="4" required></textarea>
+            </div>
+    
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <button type="submit" class="btn btn-success">Créer une option Deny</button>
+            </div>
+    
+    
+    
+    
+        </div>
+    </form>
+    <br>
+    <div class="divider"></div>
+    <b>Création d'une Cat</b>
+    <br>
+    <form data-th-action="@{addCat}" method="post">
+        <div class="row">
+    
+    
+    
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                Choisir la date du Cat : <input type="date" name="catDate" required>
+            </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            Choisir l'heur : <input type="time" name="time" required>
+                        </div>
+            
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <button type="submit" class="btn btn-success">Créer une Cat</button>
+            </div>
+    
+    
+    
+    
+        </div>
+    </form>
+        <br>
+        <div class="divider"></div>
+        <b>Relation Cat / Object</b>
+        <br>
+        <form data-th-action="@{catObject}" method="post">
+            <div class="row">
+        
+        
+        
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    Cat  : <select name="cat">
+                        <option th:each="cc : ${catList}" th:value="${cc.getIdCat()}">[[ ${cc.getCatDate()} ]] </option>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    Object : <select name="obj" >
+                        <option th:each="obob : ${objList}" th:value="${obob.getObjectId()}">[[ ${obob.getObjectName()} ]] </option>
+                    </select>                </div>
+        
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button type="submit" class="btn btn-success">Créer une aassociation Cat / object</button>
+                </div>
+        
+        
+        
+        
+            </div>
+        </form>
 
+                <br>
+                <div class="divider"></div>
+                <b>Création Authentification</b>
+                <br>
+                <form data-th-action="@{addAuth}" method="post">
+                    <div class="row">
+                
+                
+                
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            Auth Date: <input type="date" name="authDate" id="">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            Auth Time : <input type="time" name="authTime" id=""> </div>
+                             <div class="col-lg-6 col-md-6 col-sm-12">
+                                 Auth reference : <input type="text" name="authRef" > </div>
+                
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-success">Créer une Authentification</button>
+                        </div>
+                
+                
+                
+                
+                    </div>
+                </form>
+                                <br>
+                                <div class="divider"></div>
+                                <b>Création No Cat</b>
+                                <br>
+                                <form data-th-action="@{addNoCat}" method="post">
+                                    <div class="row">
+                                
+                                
+                                
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                raison: <textarea name="reason" id="" cols="30" rows="4" required></textarea>
+            </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            Id Cat Request Message : <input type="number" name="idCatRequestMsg" id=""> </div>
+                                       
+                                
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <button type="submit" class="btn btn-success">Créer No Cat</button>
+                                        </div>
+                                
+                                
+                                
+                                
+                                    </div>
+                                </form>
 </div>
 
 

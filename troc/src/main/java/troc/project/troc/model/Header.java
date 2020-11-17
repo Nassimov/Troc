@@ -26,16 +26,12 @@ public class Header {
     @Column(name = "nbrMsg")
     Long nbrMsg;
     @OneToOne
-    User receiver;
+    UserTroc receiver;
 
     @OneToOne
-    User transmitter;
+    UserTroc transmitter;
 
-    public Header() {
-
-    }
-
-    public Header(Date authDate, String authRef, Long nbrMsg, User receiver, User transmitter) {
+    public Header(Date authDate, String authRef, Long nbrMsg, UserTroc receiver, UserTroc transmitter) {
         this.authDate = authDate;
         this.authRef = authRef;
         this.nbrMsg = nbrMsg;
