@@ -1,7 +1,5 @@
 package troc.project.troc.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,25 +17,19 @@ public class Header {
     @Column(name = "idHeader")
     @GeneratedValue(strategy = GenerationType.AUTO)
     long idHeader;
-    @Column(name = "authDate")
-    Date authDate;
-    @Column(name = "authRef")
-    String authRef;
+    @OneToOne(optional = true)
+    Auth auth;
     @Column(name = "nbrMsg")
     Long nbrMsg;
     @OneToOne
-    User receiver;
+    UserTroc receiver;
 
     @OneToOne
-    User transmitter;
+    UserTroc transmitter;
 
-    public Header() {
+    public Header(Auth auth, Long nbrMsg, UserTroc receiver, UserTroc transmitter) {
 
-    }
-
-    public Header(Date authDate, String authRef, Long nbrMsg, User receiver, User transmitter) {
-        this.authDate = authDate;
-        this.authRef = authRef;
+        this.auth = auth;
         this.nbrMsg = nbrMsg;
         this.receiver = receiver;
         this.transmitter = transmitter;

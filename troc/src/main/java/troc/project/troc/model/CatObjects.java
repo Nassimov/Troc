@@ -24,12 +24,8 @@ public class CatObjects {
     @OneToOne
     Cat cat;
 
-    public CatObjects() {
-
-    }
-
-    public CatObjects(Object object, Cat cat) {
-        this.object = object;
+    public CatObjects(Object obj, Cat cat) {
+        this.object = obj;
         this.cat = cat;
     }
 }

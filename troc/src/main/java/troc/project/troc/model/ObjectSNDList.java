@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ObjetRCVList")
+@Table(name = "ObjectSNDList")
 public class ObjectSNDList {
     @Id
     @Column(name = "objetSNDListId")
