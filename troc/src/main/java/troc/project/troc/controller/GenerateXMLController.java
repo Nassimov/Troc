@@ -132,8 +132,7 @@ public class GenerateXMLController {
                                 document.createTextNode(listMsg2.getMessage().getAuth().getAuthRef() + ""));
                         auth.appendChild(authReff);
                         Element authDatee = document.createElement("authDate");
-                        authDatee.appendChild(
-                                document.createTextNode(listMsg2.getMessage().getAuth().getAuthRef() + ""));
+                        authDatee.appendChild(document.createTextNode(listMsg2.getMessage().getAuth().get + ""));
                         auth.appendChild(authDatee);
                     }
 
