@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import troc.project.troc.ParserXML;
 import troc.project.troc.model.Accept;
 import troc.project.troc.model.Auth;
 import troc.project.troc.model.Barter;
@@ -33,6 +34,7 @@ import troc.project.troc.repositories.ObjectRepository;
 import troc.project.troc.repositories.RcvObjectListRepository;
 import troc.project.troc.repositories.RequestRepository;
 import troc.project.troc.repositories.SndObjectListRepository;
+import java.text.ParseException;
 
 @Controller
 public class MainPage {

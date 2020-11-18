@@ -13,13 +13,20 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import java.text.ParseException;
+
+import lombok.Data;
 
 /**
  * @author komah Mohamed 
  * @version 1.0
  */
+@Data
 public class ParserXML {
-    
+
+    public ParserXML(){
+
+    }
     /**
      * 
      * @return factory doument 
@@ -39,7 +46,7 @@ public class ParserXML {
     public static Element builder(String fichier) {
         try {
             DocumentBuilder builder = racineFichier().newDocumentBuilder();
-            final Document document = builder.parse(new File("./dossierXML/" + fichier));
+            final Document document = builder.parse(new File(System.getProperty("user.dir")+"/src/main/resources/dossierXML/" + fichier));
             Element enteteFichier = document.getDocumentElement();
             return enteteFichier;
         }catch(ParserConfigurationException | IOException | SAXException e) {
@@ -52,14 +59,25 @@ public class ParserXML {
     * 
     * @param fichier
     * @return IdF du fichier XML passer en paramettre
-    * @throws SAXException
-    * @throws Exception
     */
-   public static int recupIdF(String fichier) throws SAXException, Exception {
+   public static int recupIdF(String fichier) throws ParseException,NullPointerException {
         Element rootFichier = builder(fichier);
         String idFichier = rootFichier.getElementsByTagName("header").item(0).getAttributes().item(0).getTextContent();
         return Integer.parseInt(idFichier);
     }
+
+
+    /**
+    * @author ALSIBAI, AYADA 
+    * @param fichier
+    * @return IdUser de emmitteur
+    */
+   public static int IdUserTra(String fichier){
+    Element rootFichier = builder(fichier);
+    String idUe = rootFichier.getElementsByTagName("transmitter").item(0).getAttributes().item(0).getTextContent();
+    return Integer.parseInt(idUe);
+}
+
     /**
      * 
      * @param fichier
@@ -67,7 +85,7 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupererTransmitter(String fichier) throws SAXException, Exception {
+    public static String recupererTransmitter(String fichier) /* throws SAXException, Exception */ {
 		String nameTransmitter;
 		Element rootFichier = builder(fichier); 
 		nameTransmitter = rootFichier.getElementsByTagName("transmitter").item(0).getTextContent();
@@ -109,7 +127,19 @@ public class ParserXML {
             e.printStackTrace();
         }
         return null;
-    }   
+    }
+    
+     /**
+    * @author ALSIBAI, AYADA 
+    * @param fichier
+    * @return IdUser de recepteur
+    */
+   public static int IdUserRecev(String fichier){
+    Element rootFichier = builder(fichier);
+    String idUr = rootFichier.getElementsByTagName("receiver").item(0).getAttributes().item(0).getTextContent();
+    return Integer.parseInt(idUr);
+}
+
     /**
      * 
      * @param fichier
@@ -117,12 +147,11 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupReceiver(String fichier) throws SAXException, Exception {
+    public static String recupReceiver(String fichier) /* throws SAXException, Exception */ {
 		String nameReceiver;
 		Element rootFichier = builder(fichier);
 		nameReceiver = rootFichier.getElementsByTagName("receiver").item(0).getTextContent();
-		String attributReceiver = rootFichier.getElementsByTagName("transmitter").item(0).getAttributes().item(0).getTextContent();
-		return (nameReceiver + " son est: "+ attributReceiver);
+		return nameReceiver;
 	}
     
     /**
@@ -132,11 +161,11 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupAuthRef(String fichier) throws SAXException, Exception {
-		
+    public static String recupAuthRef(String fichier) /* throws SAXException, Exception */ {
 		Element rootFichier = builder(fichier);
+		String authRef=rootFichier.getElementsByTagName("authRef").item(0).getTextContent();
 		 
-		return rootFichier.getElementsByTagName("authRef").item(0).getTextContent();
+		return authRef;
 	}
     /**
      * 
@@ -145,9 +174,11 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupDate(String fichier) throws SAXException, Exception {
-		Element rootFichier = builder(fichier);
-		return rootFichier.getElementsByTagName("authDate").item(0).getTextContent();
+    public static String recupDate(String fichier) /* throws SAXException, Exception */ {
+        String authDate;
+        Element rootFichier = builder(fichier);
+        authDate=rootFichier.getElementsByTagName("authDate").item(0).getTextContent();
+		return authDate;
 	}
 
     /**
@@ -157,7 +188,7 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static int nombreMsg(String fichier) throws SAXException, Exception {
+    public static int nombreMsg(String fichier) throws ParseException,NullPointerException {
 		Element rootFichier = builder(fichier);
 		return Integer.parseInt(rootFichier.getElementsByTagName("nbMsg").item(0).getTextContent());
     }
@@ -169,7 +200,7 @@ public class ParserXML {
 	 * @throws SAXException
 	 * @throws Exception
 	 */
-	public static int attributObject(String fichier) throws SAXException, Exception{
+	public static int attributObject(String fichier) /* throws SAXException, Exception */{
 		Element rootFichier = builder(fichier);
 		String attribOject = rootFichier.getElementsByTagName("object").item(0).getAttributes().item(0).getTextContent();
 		return Integer.parseInt(attribOject);
@@ -183,7 +214,7 @@ public class ParserXML {
 	 * @throws Exception
 	 */
 	
-	public static ArrayList recupRequest(String fichier) throws SAXException, Exception {
+	public static ArrayList recupRequest(String fichier)  throws SAXException, Exception {
 		// le tableau contenant des informations sur les objects selon leur position nement dans le fichier 
 		ArrayList<String> myListeMsg = new ArrayList<String>();
 		ArrayList allObject = new ArrayList<>();
