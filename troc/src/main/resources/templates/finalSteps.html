@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Generate XML</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <br />
+      <div class="divider"></div>
+      <b>Ajouter un message </b>
+      <br />
+      <form data-th-action="@{addMessage}" method="post">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Accept :
+            <select name="accept">
+              <option selected value="0"></option>
+              <option
+                th:each="acc : ${acceptList}"
+                th:value="${acc.getIdAccept()}"
+              >
+                [[ ${acc.getIdPropositionMsg()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Authentification :
+            <select name="auth">
+              <option selected value="0"></option>
+              <option
+                th:each="authAuth : ${authList}"
+                th:value="${authAuth.getIdAuth()}"
+              >
+                [[ ${authAuth.getAuthRef()} ]] [[ ${authAuth.getAuthDate()} ]]
+              </option>
+            </select>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Auth Request :
+            <input type="number" name="authRequest" id="" min="1" />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Barter :
+            <select name="barter">
+              <option selected value="0"></option>
+              <option
+                th:each="barter : ${barterList}"
+                th:value="${barter.getIdBarter()}"
+              >
+                id prev message : [[ ${barter.getIdPrevMsg()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Cat :
+            <select name="cat">
+              <option selected value="0"></option>
+              <option
+                th:each="catcat : ${catList}"
+                th:value="${catcat.getIdCat()}"
+              >
+                [[ ${catcat.getCatDate()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Cat Request:
+            <input type="number" name="catRequest" id="" min="1" />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Deny
+            <select name="deny">
+              <option selected value="0"></option>
+              <option
+                th:each="denydeny : ${denyList}"
+                th:value="${denydeny.getIdDeny()}"
+              >
+                id prev message : [[ ${denydeny.getIdPropositionMsg()} ]] raison
+                :[[ ${denydeny.getReason()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Donation
+            <select name="donation">
+              <option selected value="0"></option>
+              <option
+                th:each="donationdonation : ${donationList}"
+                th:value="${donationdonation.getIdDonation()}"
+              >
+                id prev message :[[ ${donationdonation.getIdPrevMsg()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Message d'erreur :
+            <select name="errorMessage">
+              <option selected value="0"></option>
+              <option
+                th:each="error : ${errorMessageList}"
+                th:value="${error.getIdErrorMessage()}"
+              >
+                [[ ${error.getIdErrorMessage()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            No Cat :
+            <select name="noCat">
+              <option selected value="0"></option>
+              <option
+                th:each="noCatNoCat : ${notCatList}"
+                th:value="${noCatNoCat.getNoCatId()}"
+              >
+                id Cat request message :[[ ${noCatNoCat.getIdCatRequestMsg()} ]]
+                , reason :[[ ${noCatNoCat.getReason()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Request :
+            <select name="request">
+              <option selected value="0"></option>
+              <option
+                th:each="req : ${requestList}"
+                th:value="${req.getRequestId()}"
+              >
+                id prev message :[[ ${req.getIdPrevMsg()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Durée de validité:
+            <input type="number" name="validityDuration" id="" min="1" />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Date du message :
+            <input type="date" name="messageDate" required />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Heure du message:
+            <input type="time" name="messageTime" required />
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-success">
+              Créer un message
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <br />
+      <div class="divider"></div>
+      <b>Ajouter Une liste de messages</b>
+      <br />
+      <form data-th-action="@{addListOfMessages}" method="post">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-success">
+              Créer Une nouvelle liste de messages
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <br />
+      <div class="divider"></div>
+      <b>Associer un message à une liste : </b>
+      <br />
+      <form data-th-action="@{associateMsgList}" method="post">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Message créés :
+            <select name="msg">
+              <option
+                th:each="message : ${messageList}"
+                th:value="${message.getIdMessage()}"
+              >
+                message numéro: [[ ${message.getIdMessage()} ]] en [[
+                ${message.getMessageDate()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Listes disponibles :
+            <select name="msgList">
+              <option
+                th:each="list : ${lists}"
+                th:value="${list.getMsgListId()}"
+              >
+                liste num : [[ ${list.getMsgListId()} ]]
+              </option>
+            </select>
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-success">
+              Associer un message à une liste
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <br />
+      <div class="divider"></div>
+      <b>Ajouter un Header </b>
+      <br />
+      <form data-th-action="@{addHeader}" method="post">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Emetteur :
+            <select name="transmitter">
+              <option
+                th:each="emetteur : ${userList}"
+                th:value="${emetteur.getIdUser()}"
+              >
+                [[ ${emetteur.getName()} ]] [[ ${emetteur.getLastName()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Recepteur :
+            <select name="receiver">
+              <option
+                th:each="recepteur : ${userList}"
+                th:value="${recepteur.getIdUser()}"
+              >
+                [[ ${recepteur.getName()} ]] [[ ${recepteur.getLastName()} ]]
+              </option>
+            </select>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Authentification :
+            <select name="auth">
+              <option selected value="0"></option>
+              <option
+                th:each="authentication : ${authList}"
+                th:value="${authentication.getIdAuth()}"
+              >
+                Date: [[ ${authentication.getAuthDate()} ]] Auth réf: [[
+                ${authentication.getAuthRef()} ]]
+              </option>
+            </select>
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-success">
+              Créer un Header
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <br />
+      <div class="divider"></div>
+      <b>Géneration du fichier </b>
+      <br />
+      <form data-th-action="@{addFile}" method="post">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            Choisir un Header :
+            <select name="header">
+              <option
+                th:each="head : ${listHeader}"
+                th:value="${head.getIdHeader()}"
+              >
+                header numéro: [[ ${head.getIdHeader()} ]]
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            List des messages: :
+            <select name="msgList">
+              <option
+                th:each="lstMsg : ${lists}"
+                th:value="${lstMsg.getMsgListId()}"
+              >
+                Liste numéro: [[ ${lstMsg.getMsgListId()} ]]
+              </option>
+            </select>
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-success">
+              Créer Le FICHIER
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

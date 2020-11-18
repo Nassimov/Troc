@@ -85,7 +85,7 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupererTransmitter(String fichier) /* throws SAXException, Exception */ {
+    public static String recupererTransmitter(String fichier) throws ParseException,NullPointerException {
 		String nameTransmitter;
 		Element rootFichier = builder(fichier); 
 		nameTransmitter = rootFichier.getElementsByTagName("transmitter").item(0).getTextContent();
@@ -134,11 +134,106 @@ public class ParserXML {
     * @param fichier
     * @return IdUser de recepteur
     */
-   public static int IdUserRecev(String fichier){
+   public static int IdUserRecev(String fichier) throws ParseException,NullPointerException{
     Element rootFichier = builder(fichier);
     String idUr = rootFichier.getElementsByTagName("receiver").item(0).getAttributes().item(0).getTextContent();
     return Integer.parseInt(idUr);
 }
+
+     /**
+    * @author ALSIBAI, AYADA 
+    * @param fichier
+    * @return IdUser de recepteur
+    */
+   public static int IdMsg(String fichier) throws ParseException,NullPointerException{
+    Element rootFichier = builder(fichier);
+    String idMsg = rootFichier.getElementsByTagName("message").item(0).getAttributes().item(0).getTextContent();
+    return Integer.parseInt(idMsg);
+    }
+
+    /**
+     * @author ALSIBAI, AYADA
+     * @param fichier
+     * @return la date de message 
+     * @throws ParseException
+     * @throws NullPointerException
+     */
+    public static String recupDateMsg(String fichier) throws ParseException,NullPointerException {
+        String msgDate;
+        Element rootFichier = builder(fichier);
+        msgDate=rootFichier.getElementsByTagName("dateMsg").item(0).getTextContent();
+		return msgDate;
+    }
+    
+    /**
+     * @author ALSIBAI, AYADA
+     * @param fichier
+     * @return la date de validite 
+     * @throws ParseException
+     * @throws NullPointerException
+     */
+    public static String recupDateValid(String fichier) throws ParseException,NullPointerException {
+        String msgDateValide;
+        Element rootFichier = builder(fichier);
+        msgDateValide=rootFichier.getElementsByTagName("validityDuration").item(0).getTextContent();
+		return msgDateValide;
+    }
+    
+    /**
+     * @author ALSIBAI, AYADA
+     * @param fichier
+     * @return Autorisation Request
+     * @throws ParseException
+     * @throws NullPointerException
+     */
+    public static String AuthReq(String fichier) throws ParseException,NullPointerException {
+        String authReq;
+        Element rootFichier = builder(fichier);
+        authReq=rootFichier.getElementsByTagName("authRequest").item(0).getTextContent();
+		return authReq;
+    }
+    
+     /**
+    * @author ALSIBAI, AYADA 
+    * @param fichier
+    * @return idPropositionMsgAcc
+    */
+   public static int recupIdPropMsgAcc(String fichier) throws ParseException,NullPointerException{
+    try
+    {
+        Element rootFichier = builder(fichier);
+        String propMsg = rootFichier.getElementsByTagName("accept").item(0).getChildNodes().item(1).getTextContent();
+        return Integer.parseInt(propMsg);
+    }catch(NullPointerException e){
+        return -1;
+    }
+}
+
+    /**
+    * @author ALSIBAI, AYADA 
+    * @param fichier
+    * @return idPropositionMsgDeny
+    */
+   public static int recupIdPropMsgDeny(String fichier) throws ParseException,NullPointerException{
+    try{
+            Element rootFichier = builder(fichier);
+            String propMsgDeny = rootFichier.getElementsByTagName("deny").item(0).getChildNodes().item(1).getTextContent();
+            return Integer.parseInt(propMsgDeny);
+        }catch(NullPointerException e){
+            return -1;
+        }
+    }
+
+    public static String reasonDeny(String fichier) throws ParseException,NullPointerException {
+        try{
+            String reasDeny;
+            Element rootFichier = builder(fichier);
+            reasDeny = rootFichier.getElementsByTagName("deny").item(0).getChildNodes().item(3).getTextContent();
+            return reasDeny;
+        }catch(NullPointerException e){
+            return null;
+        }
+    }
 
     /**
      * 
@@ -147,7 +242,7 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupReceiver(String fichier) /* throws SAXException, Exception */ {
+    public static String recupReceiver(String fichier) throws ParseException,NullPointerException {
 		String nameReceiver;
 		Element rootFichier = builder(fichier);
 		nameReceiver = rootFichier.getElementsByTagName("receiver").item(0).getTextContent();
@@ -161,7 +256,7 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupAuthRef(String fichier) /* throws SAXException, Exception */ {
+    public static String recupAuthRef(String fichier) throws ParseException,NullPointerException {
 		Element rootFichier = builder(fichier);
 		String authRef=rootFichier.getElementsByTagName("authRef").item(0).getTextContent();
 		 
@@ -174,7 +269,7 @@ public class ParserXML {
      * @throws SAXException
      * @throws Exception
      */
-    public static String recupDate(String fichier) /* throws SAXException, Exception */ {
+    public static String recupDate(String fichier) throws ParseException,NullPointerException {
         String authDate;
         Element rootFichier = builder(fichier);
         authDate=rootFichier.getElementsByTagName("authDate").item(0).getTextContent();
@@ -210,11 +305,9 @@ public class ParserXML {
 	 * 
 	 * @param fichier
 	 * @return un tableau de arrayList, de chaine de caractere (quand c'est un fichier de request)
-	 * @throws SAXException
-	 * @throws Exception
 	 */
 	
-	public static ArrayList recupRequest(String fichier)  throws SAXException, Exception {
+	public static ArrayList recupRcvObjBarter(String fichier)  throws SAXException, Exception {
 		// le tableau contenant des informations sur les objects selon leur position nement dans le fichier 
 		ArrayList<String> myListeMsg = new ArrayList<String>();
 		ArrayList allObject = new ArrayList<>();
@@ -227,7 +320,7 @@ public class ParserXML {
 		// gestion du DOM
 		DocumentBuilderFactory dbf =  racineFichier();
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		final Document dom= db.parse(new File("./dossierXML/" + fichier));
+		final Document dom= db.parse(new File(System.getProperty("user.dir")+"/src/main/resources/dossierXML/" + fichier));
 	    Element docEle = dom.getDocumentElement();
 	    NodeList nl = docEle.getChildNodes();
 		if (nl != null) {
@@ -237,7 +330,7 @@ public class ParserXML {
 	                   Element el = (Element) nl.item(i);
 	                   //System.out.println(el.getTagName());
 	                   if (el.getNodeName().contains("body")) {
-	                	   int nbObj = el.getElementsByTagName("object").getLength();
+	                	   int nbObj = el.getElementsByTagName("rcvObjectList").getLength();
 	                	   for (int j = 0; j < nbObj; j++) {
 	                		   attribOject = dom.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
 		                        objectName = el.getElementsByTagName("objectName").item(j).getTextContent();
@@ -259,16 +352,72 @@ public class ParserXML {
 		return allObject;
 		
     }
+
+    public static ArrayList recupSndObjBarter(String fichier)  throws SAXException, Exception {
+		// le tableau contenant des informations sur les objects selon leur position nement dans le fichier 
+		ArrayList<String> myListeMsg = new ArrayList<String>();
+		ArrayList allObject = new ArrayList<>();
+		// les varaibles
+		String objectName; 
+		String objectDetails; 
+		String objectImage ;
+		String  attribOject;
+		
+		// gestion du DOM
+		DocumentBuilderFactory dbf =  racineFichier();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		final Document dom= db.parse(new File(System.getProperty("user.dir")+"/src/main/resources/dossierXML/" + fichier));
+	    Element docEle = dom.getDocumentElement();
+	    NodeList nl = docEle.getChildNodes();
+		if (nl != null) {
+               int length = nl.getLength();
+	           for (int i = 0; i < length; i++) {
+	               if (nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
+	                   Element el = (Element) nl.item(i);
+	                   System.out.println(nl.item(i).getNodeType());
+	                   if (el.getNodeName().contains("body")) {
+                           //System.err.println(el.getElementsByTagName("sndObjectList").item(0).getParentNode().getNodeName());
+                           int nbObj = el.getElementsByTagName("object").getLength();
+	                	   for (int j = 0; j < nbObj; j++) {
+	                		   attribOject = dom.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
+		                        objectName = el.getElementsByTagName("objectName").item(j).getTextContent();
+		                        objectDetails = el.getElementsByTagName("objectDetails").item(j).getTextContent();
+		                        objectImage = el.getElementsByTagName("objectImage").item(j).getTextContent();
+		                        
+		                        // insertion dans la liste
+		                       myListeMsg.add(attribOject);
+		                       myListeMsg.add(objectName);
+		                       myListeMsg.add(objectDetails);
+		                       myListeMsg.add(objectImage);
+	                	   }
+	                	    // un arrayList qui contient tous les objects 
+	                	   allObject.add(myListeMsg); 
+	                   }
+	                }
+	            }
+	       }
+		return allObject;
+		
+    }
+
+    public static ArrayList<ArrayList> listObjRcvBarter(String fichier) throws SAXException, Exception {
+        try{
+            Element rootFichier = builder(fichier);
+            String choix = rootFichier.getElementsByTagName("barter").item(0).getChildNodes().item(1).getNodeName();
+            return recupSndObjBarter(fichier);
+            }catch(NullPointerException e){
+                return null;
+            }
+    }
     
-    /**
-	 * 
-	 * @return la liste de messages quand c'est un troc
-	 * @throws SAXException
-	 * @throws Exception
-	 */
-	
-	public static ArrayList<ArrayList> listMsg(String fichier) throws SAXException, Exception {
-		return recupRequest(fichier);
+    public static ArrayList<ArrayList> listObjSndBarter(String fichier) throws SAXException, Exception {
+        try{
+            Element rootFichier = builder(fichier);
+            String choix = rootFichier.getElementsByTagName("sndObjectList").item(0).getParentNode().getNodeName();
+            return recupRcvObjBarter(fichier);
+            }catch(NullPointerException e){
+                return null;
+            }
 	}
 
 }

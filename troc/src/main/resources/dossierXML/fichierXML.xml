@@ -10,7 +10,7 @@
 			</header>
 			<body>
 				<listMsg>
-					<message idMsg="M344">
+					<message idMsg="344">
 						<dateMsg>2000-11-13T12:34:55</dateMsg>
 						<validityDuration>P8Y</validityDuration>
 						<!-- <authRequest/> -->
@@ -18,10 +18,10 @@
 							<authRef>ggfgfgdsggs</authRef>
 							<authDate>2001-11-13T12:34:55</authDate>
 						</auth> -->
-						<!-- <deny>
+						<deny>
 							<idPropositionMsg>23455</idPropositionMsg>
 							<reason> de mauvaise qualite</reason>
-						</deny> -->
+						</deny>
 						<barter>
 							<rcvObjectList>
 								<object idObject="0987">

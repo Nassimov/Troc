@@ -18,22 +18,21 @@ public class FileTroc {
     @Column(name = "idFileTroc")
     @GeneratedValue(strategy = GenerationType.AUTO)
     long idFileTroc;
-    @Column(name = "fileID")
-    long fileID;
     @Column(name = "filePath")
     String filePath;
     @OneToOne
     Header header;
+    @OneToOne
+    MsgList msgList;
 
     public FileTroc() {
 
     }
 
-    public FileTroc(long idFileTroc, long fileID, String filePath, Header header) {
-        this.idFileTroc = idFileTroc;
-        this.fileID = fileID;
-        this.filePath = filePath;
+    public FileTroc(Header header, MsgList msgList) {
+
         this.header = header;
+        this.msgList = msgList;
     }
 
 }
