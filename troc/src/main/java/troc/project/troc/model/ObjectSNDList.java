@@ -21,7 +21,7 @@ public class ObjectSNDList {
     @OneToOne
     Object object;
     @OneToOne
-    SndObjectList SndObjectList;
+    SndObjectList sndObjectList;
 
     public ObjectSNDList() {
 
@@ -29,7 +29,7 @@ public class ObjectSNDList {
 
     public ObjectSNDList(Object object, SndObjectList SndObjectList) {
         this.object = object;
-        this.SndObjectList = SndObjectList;
+        this.sndObjectList = SndObjectList;
 
     }
 }
