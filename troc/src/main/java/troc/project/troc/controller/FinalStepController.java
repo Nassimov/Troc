@@ -43,7 +43,7 @@ import troc.project.troc.repositories.SndObjectListRepository;
 import troc.project.troc.repositories.UserTrocRepository;
 
 @Controller
-public class MainPage {
+public class FinalStepController {
     @Autowired
     CatRepository catRepositories;
     @Autowired
@@ -77,8 +77,8 @@ public class MainPage {
     @Autowired
     HeaderRepository headerRepository;
 
-    @RequestMapping(value = { "/" }, method = RequestMethod.GET)
-    public String accueil(Model m) {
+    @RequestMapping(value = { "/nextStep" }, method = RequestMethod.GET)
+    public String nextStep(Model m) {
         List<Cat> catList = (List<Cat>) catRepositories.findAll();
         List<Object> objList = (List<Object>) objectRepositories.findAll();
         List<SndObjectList> sndObjectList = (List<SndObjectList>) sndObjectListRepository.findAll();
@@ -115,7 +115,7 @@ public class MainPage {
         m.addAttribute("lists", lists);
         m.addAttribute("listHeader", listHeader);
 
-        return "index";
+        return "finalSteps";
     }
 
 }

@@ -17,17 +17,21 @@ public class Header {
     @Column(name = "idHeader")
     @GeneratedValue(strategy = GenerationType.AUTO)
     long idHeader;
-    @OneToOne(optional = true)
+    @OneToOne
     Auth auth;
     @Column(name = "nbrMsg")
-    Long nbrMsg;
+    Integer nbrMsg;
     @OneToOne
     UserTroc receiver;
 
     @OneToOne
     UserTroc transmitter;
 
-    public Header(Auth auth, Long nbrMsg, UserTroc receiver, UserTroc transmitter) {
+    public Header() {
+
+    }
+
+    public Header(Auth auth, Integer nbrMsg, UserTroc receiver, UserTroc transmitter) {
 
         this.auth = auth;
         this.nbrMsg = nbrMsg;
