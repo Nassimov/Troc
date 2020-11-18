@@ -24,57 +24,65 @@ import troc.project.troc.repositories.RequestRepository;
 @Controller
 public class MessageController {
 
-    @Autowired
-    MessageRepository messageRepository;
-    @Autowired
-    AcceptRepository acceptRepository;
-    @Autowired
-    AuthRepository authRepository;
-    @Autowired
-    BarterRepository barterRepository;
-    @Autowired
-    CatRepository catRepository;
-    @Autowired
-    DenyRepository denyRepository;
-    @Autowired
-    DonationRepository donationRepository;
-    @Autowired
-    ErrorMessageRepository errorMessageRepository;
-    @Autowired
-    NoCatRepository noCatRepository;
-    @Autowired
-    RequestRepository requestRepository;
+        @Autowired
+        MessageRepository messageRepository;
+        @Autowired
+        AcceptRepository acceptRepository;
+        @Autowired
+        AuthRepository authRepository;
+        @Autowired
+        BarterRepository barterRepository;
+        @Autowired
+        CatRepository catRepository;
+        @Autowired
+        DenyRepository denyRepository;
+        @Autowired
+        DonationRepository donationRepository;
+        @Autowired
+        ErrorMessageRepository errorMessageRepository;
+        @Autowired
+        NoCatRepository noCatRepository;
+        @Autowired
+        RequestRepository requestRepository;
 
-    @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
+        @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
 
-    public String addMessage(@RequestParam Long accept, @RequestParam Long auth, @RequestParam Long authRequest,
-            @RequestParam Long barter, @RequestParam Long cat, @RequestParam Long catRequest, @RequestParam Long deny,
-            @RequestParam Long donation, @RequestParam Long errorMessage, @RequestParam Long noCat,
-            @RequestParam Long request, @RequestParam Long validityDuration, @RequestParam String messageDate,
-            @RequestParam String messageTime, Model m) {
-        int year = Integer.parseInt(messageDate.split("-")[0]);
-        int goodYear = year - 1900;
-        int month = Integer.parseInt(messageDate.split("-")[1]);
-        int date = Integer.parseInt(messageDate.split("-")[2]);
-        int h1 = Integer.parseInt(messageTime.split(":")[0]);
-        int m1 = Integer.parseInt(messageTime.split(":")[1]);
-        Date newDate = new Date(goodYear, month, date, h1, m1);
+        public String addMessage(@RequestParam Long accept, @RequestParam Long auth, @RequestParam Long authRequest,
+                        @RequestParam Long barter, @RequestParam Long cat, @RequestParam Long catRequest,
+                        @RequestParam Long deny, @RequestParam Long donation, @RequestParam Long errorMessage,
+                        @RequestParam Long noCat, @RequestParam Long request, @RequestParam Long validityDuration,
+                        @RequestParam String messageDate, @RequestParam String messageTime, Model m) {
+                int year = Integer.parseInt(messageDate.split("-")[0]);
+                int goodYear = year - 1900;
+                int month = Integer.parseInt(messageDate.split("-")[1]);
+                int date = Integer.parseInt(messageDate.split("-")[2]);
+                int h1 = Integer.parseInt(messageTime.split(":")[0]);
+                int m1 = Integer.parseInt(messageTime.split(":")[1]);
+                Date newDate = new Date(goodYear, month, date, h1, m1);
 
-        messageRepository.save(new Message(
-                acceptRepository.findById(accept).isPresent() ? acceptRepository.findById(accept).get() : null,
-                authRepository.findById(auth).isPresent() ? authRepository.findById(auth).get() : null, authRequest,
-                barterRepository.findById(barter).isPresent() ? barterRepository.findById(barter).get() : null,
-                catRepository.findById(cat).isPresent() ? catRepository.findById(cat).get() : null,
-                catRequest != null ? catRequest : null,
-                denyRepository.findById(deny).isPresent() ? denyRepository.findById(deny).get() : null,
-                donationRepository.findById(donation).isPresent() ? donationRepository.findById(donation).get() : null,
-                errorMessageRepository.findById(errorMessage).isPresent()
-                        ? errorMessageRepository.findById(errorMessage).get()
-                        : null,
-                noCatRepository.findById(noCat).isPresent() ? noCatRepository.findById(noCat).get() : null,
-                requestRepository.findById(request).isPresent() ? requestRepository.findById(request).get() : null,
-                validityDuration, newDate));
+                messageRepository.save(new Message(
+                                acceptRepository.findById(accept).isPresent() ? acceptRepository.findById(accept).get()
+                                                : null,
+                                authRepository.findById(auth).isPresent() ? authRepository.findById(auth).get() : null,
+                                authRequest,
+                                barterRepository.findById(barter).isPresent() ? barterRepository.findById(barter).get()
+                                                : null,
+                                catRepository.findById(cat).isPresent() ? catRepository.findById(cat).get() : null,
+                                catRequest != null ? catRequest : null,
+                                denyRepository.findById(deny).isPresent() ? denyRepository.findById(deny).get() : null,
+                                donationRepository.findById(donation).isPresent()
+                                                ? donationRepository.findById(donation).get()
+                                                : null,
+                                errorMessageRepository.findById(errorMessage).isPresent()
+                                                ? errorMessageRepository.findById(errorMessage).get()
+                                                : null,
+                                noCatRepository.findById(noCat).isPresent() ? noCatRepository.findById(noCat).get()
+                                                : null,
+                                requestRepository.findById(request).isPresent()
+                                                ? requestRepository.findById(request).get()
+                                                : null,
+                                validityDuration, newDate));
 
-        return "redirect:/";
-    }
+                return "redirect:/nextStep";
+        }
 }
