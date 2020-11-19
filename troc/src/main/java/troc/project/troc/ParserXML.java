@@ -400,24 +400,139 @@ public class ParserXML {
 		
     }
 
-    public static ArrayList<ArrayList> listObjRcvBarter(String fichier) throws SAXException, Exception {
-        try{
-            Element rootFichier = builder(fichier);
-            String choix = rootFichier.getElementsByTagName("barter").item(0).getChildNodes().item(1).getNodeName();
-            return recupSndObjBarter(fichier);
-            }catch(NullPointerException e){
-                return null;
-            }
-    }
+   //---------------------------methodes ajouter -------------------------------------------
+
+   public static ArrayList recupReceiverObjet(String fichier) throws SAXException, Exception {
+		
+    ArrayList<String> myListeMsg = new ArrayList<String>(); // le tableau contient toutes les informations sur la liste de msg
+    String  attribObject;
+    String objectName ;
+    String obejectDetails;
+    String obejectImage ;
     
-    public static ArrayList<ArrayList> listObjSndBarter(String fichier) throws SAXException, Exception {
-        try{
-            Element rootFichier = builder(fichier);
-            String choix = rootFichier.getElementsByTagName("sndObjectList").item(0).getParentNode().getNodeName();
-            return recupRcvObjBarter(fichier);
-            }catch(NullPointerException e){
-                return null;
+    
+    Element rootFichier = builder(fichier); // la racine du fichier
+    
+    Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
+    
+    //NodeList myOfNodes = myElt.getElementsByTagName("message");
+    
+    // recuperation des informations sur les objects dans la liste d'object
+    NodeList myOfNodes1 = myElt.getElementsByTagName("rcvObjectList");
+    
+    for (int i = 0; i < myOfNodes1.getLength(); i++) {
+        //System.out.println(i);
+        Element newElt1 = (Element) myOfNodes1.item(i);
+        int nbObj = newElt1.getElementsByTagName("object").getLength();
+        System.out.println("la liste des objects reçu il y en a : " + nbObj);
+        if(newElt1.getNodeName().contains("rcvObjectList")) {
+            for (int j = 0; j < nbObj; j++) {
+                attribObject = rootFichier.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
+                objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
+                obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
+                obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
+                
+                myListeMsg.add(attribObject);
+                myListeMsg.add(objectName);
+                myListeMsg.add(obejectDetails);
+                myListeMsg.add(obejectImage);
             }
-	}
+        }
+    } 
+    
+    return myListeMsg;
+}
+
+
+//------------------------------------------methode senObj------------------------------------
+
+
+public static ArrayList recupSndObjet(String fichier) throws SAXException, Exception {
+    
+    ArrayList<String> myListeMsg = new ArrayList<String>(); // le tableau contient toutes les informations sur la liste de msg
+    String  attribObject;
+    String objectName ;
+    String obejectDetails;
+    String obejectImage ;
+    
+    Element rootFichier = builder(fichier); // la racine du fichier
+    
+    Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
+    
+    //NodeList myOfNodes = myElt.getElementsByTagName("message");
+    
+    // recuperation des informations sur les objects dans la liste d'object
+    NodeList myOfNodes1 = myElt.getElementsByTagName("sndObjectList");
+    
+    for (int i = 0; i < myOfNodes1.getLength(); i++) {
+        //System.out.println(i);
+        Element newElt1 = (Element) myOfNodes1.item(i);
+        int nbObj = newElt1.getElementsByTagName("object").getLength();
+        System.out.println("la liste des objects envoyer il y en a : " + nbObj);
+        if(newElt1.getNodeName().contains("sndObjectList")) {
+            for (int j = 0; j < nbObj; j++) {
+                // recuperation des valeurs des object
+                attribObject = rootFichier.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
+                objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
+                obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
+                obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
+                // ajout des valeurs dans la liste 
+                myListeMsg.add(attribObject);
+                myListeMsg.add(objectName);
+                myListeMsg.add(obejectDetails);
+                myListeMsg.add(obejectImage);
+            }
+        }
+    } 
+    
+    return myListeMsg;
+}
+
+//--------------------------------donation--------------------------------------------------------------------
+
+
+public static ArrayList recupDonationObject(String fichier) throws SAXException, Exception {
+
+ArrayList<String> myListeMsg = new ArrayList<String>(); // le tableau contient toutes les informations sur la liste de msg
+String  attribObject;
+String objectName ;
+String obejectDetails;
+String obejectImage ;
+
+Element rootFichier = builder(fichier); // la racine du fichier
+
+Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
+
+//NodeList myOfNodes = myElt.getElementsByTagName("message");
+
+// recuperation des informations sur les objects dans la liste d'object
+NodeList myOfNodes1 = myElt.getElementsByTagName("donation");
+
+for (int i = 0; i < myOfNodes1.getLength(); i++) {
+    
+    Element newElt1 = (Element) myOfNodes1.item(i);
+    int nbObj = newElt1.getElementsByTagName("object").getLength();
+    System.out.println("la liste des objects donnés il y en a : " + nbObj);
+    System.out.println(newElt1.getNodeName());
+    //if(newElt1.getNodeName().contains("sndObjectList")) {
+        
+        for (int j = 0; j < nbObj; j++) {
+            // recuperation des valeurs des object
+            attribObject = rootFichier.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
+            objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
+            obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
+            obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
+            // ajout des valeurs dans la liste 
+            myListeMsg.add(attribObject);
+            myListeMsg.add(objectName);
+            myListeMsg.add(obejectDetails);
+            myListeMsg.add(obejectImage);
+        }
+    //}
+} 
+
+return myListeMsg;
+}
+
 
 }
