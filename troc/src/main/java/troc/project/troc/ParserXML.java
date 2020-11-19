@@ -17,16 +17,17 @@
 
     import lombok.Data;
 
-    /**
-     * @author komah Mohamed 
-     * @version 1.0
-     */
-    @Data
-    public class ParserXML {
+/**
+ * @author komah Mohamed 
+ * * @version 1.0
+ * */
+@Data
+public class ParserXML {
 
         public ParserXML(){
 
         }
+        
         /**
          * 
          * @return factory doument 
@@ -53,7 +54,7 @@
                 e.printStackTrace();
             return null;
             } 
-    }
+        }
 
     /**
         * 
@@ -134,21 +135,21 @@
         * @param fichier
         * @return IdUser de recepteur
         */
-    public int IdUserRecev(String fichier) throws ParseException,NullPointerException{
-        Element rootFichier = builder(fichier);
-        String idUr = rootFichier.getElementsByTagName("receiver").item(0).getAttributes().item(0).getTextContent();
-        return Integer.parseInt(idUr);
-    }
+        public int IdUserRecev(String fichier) throws ParseException,NullPointerException{
+            Element rootFichier = builder(fichier);
+            String idUr = rootFichier.getElementsByTagName("receiver").item(0).getAttributes().item(0).getTextContent();
+            return Integer.parseInt(idUr);
+        }
 
         /**
         * @author ALSIBAI, AYADA 
         * @param fichier
         * @return IdUser de recepteur
         */
-    public static int IdMsg(String fichier) throws ParseException,NullPointerException{
-        Element rootFichier = builder(fichier);
-        String idMsg = rootFichier.getElementsByTagName("message").item(0).getAttributes().item(0).getTextContent();
-        return Integer.parseInt(idMsg);
+        public int IdMsg(String fichier) throws ParseException,NullPointerException{
+            Element rootFichier = builder(fichier);
+            String idMsg = rootFichier.getElementsByTagName("message").item(0).getAttributes().item(0).getTextContent();
+            return Integer.parseInt(idMsg);
         }
 
         /**
@@ -158,7 +159,7 @@
          * @throws ParseException
          * @throws NullPointerException
          */
-        public static String recupDateMsg(String fichier) throws ParseException,NullPointerException {
+        public String recupDateMsg(String fichier) throws ParseException,NullPointerException {
             String msgDate;
             Element rootFichier = builder(fichier);
             msgDate=rootFichier.getElementsByTagName("dateMsg").item(0).getTextContent();
@@ -186,7 +187,7 @@
          * @throws ParseException
          * @throws NullPointerException
          */
-        public static String AuthReq(String fichier) throws ParseException,NullPointerException {
+        public String AuthReq(String fichier) throws ParseException,NullPointerException {
             String authReq;
             Element rootFichier = builder(fichier);
             authReq=rootFichier.getElementsByTagName("authRequest").item(0).getTextContent();
@@ -198,30 +199,29 @@
         * @param fichier
         * @return idPropositionMsgAcc
         */
-    public int recupIdPropMsgAcc(String fichier) throws ParseException,NullPointerException{
-        try
-        {
-            Element rootFichier = builder(fichier);
-            String propMsg = rootFichier.getElementsByTagName("accept").item(0).getChildNodes().item(1).getTextContent();
-            return Integer.parseInt(propMsg);
-        }catch(NullPointerException e){
-            return -1;
+        public int recupIdPropMsgAcc(String fichier) throws ParseException,NullPointerException{
+            try{
+                Element rootFichier = builder(fichier);
+                String propMsg = rootFichier.getElementsByTagName("accept").item(0).getChildNodes().item(1).getTextContent();
+                return Integer.parseInt(propMsg);
+            }catch(NullPointerException e){
+                return -1;
+            }
         }
-    }
 
         /**
         * @author ALSIBAI, AYADA 
         * @param fichier
         * @return idPropositionMsgDeny
         */
-    public int recupIdPropMsgDeny(String fichier) throws ParseException,NullPointerException{
-        try{
-                Element rootFichier = builder(fichier);
-                String propMsgDeny = rootFichier.getElementsByTagName("deny").item(0).getChildNodes().item(1).getTextContent();
-                return Integer.parseInt(propMsgDeny);
-            }catch(NullPointerException e){
-                return -1;
-            }
+        public int recupIdPropMsgDeny(String fichier) throws ParseException,NullPointerException{
+            try{
+                    Element rootFichier = builder(fichier);
+                    String propMsgDeny = rootFichier.getElementsByTagName("deny").item(0).getChildNodes().item(1).getTextContent();
+                    return Integer.parseInt(propMsgDeny);
+                }catch(NullPointerException e){
+                    return -1;
+                }
         }
 
         public static String reasonDeny(String fichier) throws ParseException,NullPointerException {
@@ -332,6 +332,7 @@
                         if (el.getNodeName().contains("body")) {
                             int nbObj = el.getElementsByTagName("rcvObjectList").getLength();
                             for (int j = 0; j < nbObj; j++) {
+
                                 attribOject = dom.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
                                     objectName = el.getElementsByTagName("objectName").item(j).getTextContent();
                                     objectDetails = el.getElementsByTagName("objectDetails").item(j).getTextContent();
@@ -352,7 +353,11 @@
             return allObject;
             
         }
-
+        /**
+         * @author komah Mohamed
+         * @return la liste des objects envoyés plus generale(tous les objects dans un fichier)
+         * @param  fichier 
+         */
         public ArrayList recupSndObjBarter(String fichier)  throws SAXException, Exception {
             // le tableau contenant des informations sur les objects selon leur position nement dans le fichier 
             ArrayList<String> myListeMsg = new ArrayList<String>();
@@ -401,7 +406,13 @@
         }
 
     //---------------------------methodes ajouter -------------------------------------------
-
+    /**
+     * 
+     * @param fichier
+     * @return la liste des object reçus
+     * @throws SAXException
+     * @throws Exception
+     */
     public ArrayList recupReceiverObjet(String fichier) throws SAXException, Exception {
             
         ArrayList<String> myListeMsg = new ArrayList<String>(); // le tableau contient toutes les informations sur la liste de msg
@@ -414,8 +425,6 @@
         Element rootFichier = builder(fichier); // la racine du fichier
         
         Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
-        
-        //NodeList myOfNodes = myElt.getElementsByTagName("message");
         
         // recuperation des informations sur les objects dans la liste d'object
         NodeList myOfNodes1 = myElt.getElementsByTagName("rcvObjectList");
@@ -446,7 +455,13 @@
 
     //------------------------------------------methode senObj------------------------------------
 
-
+    /**
+     * 
+     * @param fichier
+     * @return la liste des objects envoyer 
+     * @throws SAXException
+     * @throws Exception
+     */
     public ArrayList recupSndObjet(String fichier) throws SAXException, Exception {
         
         ArrayList<String> myListeMsg = new ArrayList<String>(); // le tableau contient toutes les informations sur la liste de msg
@@ -458,8 +473,6 @@
         Element rootFichier = builder(fichier); // la racine du fichier
         
         Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
-        
-        //NodeList myOfNodes = myElt.getElementsByTagName("message");
         
         // recuperation des informations sur les objects dans la liste d'object
         NodeList myOfNodes1 = myElt.getElementsByTagName("sndObjectList");
@@ -490,49 +503,56 @@
 
     //--------------------------------donation--------------------------------------------------------------------
 
+        /**
+         * @author komah Mohamed
+         * @param fichier
+         * @return la liste des objects donnés
+         * @throws SAXException
+         * @throws Exception
+         */
 
-    public ArrayList recupDonationObject(String fichier) throws SAXException, Exception {
+        public ArrayList recupDonationObject(String fichier) throws SAXException, Exception {
 
-    ArrayList<String> myListeMsg = new ArrayList<String>(); // le tableau contient toutes les informations sur la liste de msg
-    String  attribObject;
-    String objectName ;
-    String obejectDetails;
-    String obejectImage ;
+            ArrayList<String> myListeMsg = new ArrayList<String>(); // le tableau contient toutes les informations sur la liste de msg
+            String  attribObject;
+            String objectName ;
+            String obejectDetails;
+            String obejectImage ;
 
-    Element rootFichier = builder(fichier); // la racine du fichier
+            Element rootFichier = builder(fichier); // la racine du fichier
 
-    Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
+            Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
 
-    //NodeList myOfNodes = myElt.getElementsByTagName("message");
+            //NodeList myOfNodes = myElt.getElementsByTagName("message");
 
-    // recuperation des informations sur les objects dans la liste d'object
-    NodeList myOfNodes1 = myElt.getElementsByTagName("donation");
+            // recuperation des informations sur les objects dans la liste d'object
+            NodeList myOfNodes1 = myElt.getElementsByTagName("donation");
 
-    for (int i = 0; i < myOfNodes1.getLength(); i++) {
-        
-        Element newElt1 = (Element) myOfNodes1.item(i);
-        int nbObj = newElt1.getElementsByTagName("object").getLength();
-        System.out.println("la liste des objects donnés il y en a : " + nbObj);
-        System.out.println(newElt1.getNodeName());
-        //if(newElt1.getNodeName().contains("sndObjectList")) {
-            
-            for (int j = 0; j < nbObj; j++) {
-                // recuperation des valeurs des object
-                attribObject = rootFichier.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
-                objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
-                obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
-                obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
-                // ajout des valeurs dans la liste 
-                myListeMsg.add(attribObject);
-                myListeMsg.add(objectName);
-                myListeMsg.add(obejectDetails);
-                myListeMsg.add(obejectImage);
-            }
-        //}
-    } 
+            for (int i = 0; i < myOfNodes1.getLength(); i++) {
+                
+                Element newElt1 = (Element) myOfNodes1.item(i);
+                int nbObj = newElt1.getElementsByTagName("object").getLength();
+                System.out.println("la liste des objects donnés il y en a : " + nbObj);
+                System.out.println(newElt1.getNodeName());
+                //if(newElt1.getNodeName().contains("sndObjectList")) {
+                    
+                    for (int j = 0; j < nbObj; j++) {
+                        // recuperation des valeurs des object
+                        attribObject = rootFichier.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
+                        objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
+                        obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
+                        obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
+                        // ajout des valeurs dans la liste 
+                        myListeMsg.add(attribObject);
+                        myListeMsg.add(objectName);
+                        myListeMsg.add(obejectDetails);
+                        myListeMsg.add(obejectImage);
+                    }
+                //}
+            } 
 
-    return myListeMsg;
-    }
+            return myListeMsg;
+        }
 
 
-    }
+}
