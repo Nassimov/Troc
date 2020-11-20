@@ -277,7 +277,7 @@ public class ParserXML {
         }
 
         /**
-         * 
+         * @author Komah Mohamed
          * @param fichier
          * @return le nombre de message
          * @throws SAXException
@@ -302,7 +302,7 @@ public class ParserXML {
         }
         
         /**
-         * 
+         * @author Komah Mohamed
          * @param fichier
          * @return un tableau de arrayList, de chaine de caractere (quand c'est un fichier de request)
          */
@@ -407,7 +407,7 @@ public class ParserXML {
 
     //---------------------------methodes ajouter -------------------------------------------
     /**
-     * 
+     * @author Komah mohamed
      * @param fichier
      * @return la liste des object reçus
      * @throws SAXException
@@ -420,7 +420,6 @@ public class ParserXML {
         String objectName ;
         String obejectDetails;
         String obejectImage ;
-        
         
         Element rootFichier = builder(fichier); // la racine du fichier
         
@@ -451,12 +450,10 @@ public class ParserXML {
         
         return myListeMsg;
     }
-
-
     //------------------------------------------methode senObj------------------------------------
 
     /**
-     * 
+     * @author komah Mohamed
      * @param fichier
      * @return la liste des objects envoyer 
      * @throws SAXException
@@ -523,8 +520,6 @@ public class ParserXML {
 
             Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
 
-            //NodeList myOfNodes = myElt.getElementsByTagName("message");
-
             // recuperation des informations sur les objects dans la liste d'object
             NodeList myOfNodes1 = myElt.getElementsByTagName("donation");
 
@@ -552,6 +547,54 @@ public class ParserXML {
             } 
 
             return myListeMsg;
+        }
+
+
+        /**
+         * 
+         * @param fichier
+         * @param nomNoeud
+         * @return la liste des object(adaptable à toute autre categorie dans un fichier xml)
+         * @throws SAXException
+         * @throws Exception
+         */
+        public ArrayList recupCatObject(String fichier , String nomNoeud) throws SAXException, Exception {
+            ArrayList<String>  myListeObject = new ArrayList<String>();
+            
+            String  attribObject;
+            String objectName ;
+            String obejectDetails;
+            String obejectImage ;
+            
+            Element rootFichier = builder(fichier); // la racine du fichier
+            
+            Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0); // recuperation noeud liste de msg
+            
+            NodeList myOfNodes = myElt.getElementsByTagName("message");
+            
+            // recuperation des informations sur les objects dans la liste d'object
+            NodeList myOfNodes1 = myElt.getElementsByTagName(nomNoeud);
+            
+            for (int i = 0; i < myOfNodes1.getLength(); i++) {
+                
+                Element newElt1 = (Element) myOfNodes1.item(i);
+                int nbObj = newElt1.getElementsByTagName("object").getLength();
+                System.out.println("la liste des objects cat il y en a : " + nbObj);
+                    for (int j = 0; j < nbObj; j++) {
+                        // recuperation des valeurs des object
+                        attribObject = rootFichier.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
+                        objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
+                        obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
+                        obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
+                        // ajout des valeurs dans la liste 
+                        myListeObject.add(attribObject);
+                        myListeObject.add(objectName);
+                        myListeObject.add(obejectDetails);
+                        myListeObject.add(obejectImage);
+                    }
+            } 
+            
+            return myListeObject;
         }
 
 
