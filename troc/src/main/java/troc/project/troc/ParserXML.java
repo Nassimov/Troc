@@ -353,58 +353,59 @@ public class ParserXML {
 		
     }
 
-    public static ArrayList recupSndObjBarter(String fichier)  throws SAXException, Exception {
-		// le tableau contenant des informations sur les objects selon leur position nement dans le fichier 
-		ArrayList<String> myListeMsg = new ArrayList<String>();
-		ArrayList allObject = new ArrayList<>();
-		// les varaibles
-		String objectName; 
-		String objectDetails; 
-		String objectImage ;
-		String  attribOject;
-		
-		// gestion du DOM
-		DocumentBuilderFactory dbf =  racineFichier();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		final Document dom= db.parse(new File(System.getProperty("user.dir")+"/src/main/resources/dossierXML/" + fichier));
-	    Element docEle = dom.getDocumentElement();
-	    NodeList nl = docEle.getChildNodes();
-		if (nl != null) {
-               int length = nl.getLength();
-	           for (int i = 0; i < length; i++) {
-	               if (nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
-	                   Element el = (Element) nl.item(i);
-	                   System.out.println(nl.item(i).getNodeType());
-	                   if (el.getNodeName().contains("body")) {
-                           //System.err.println(el.getElementsByTagName("sndObjectList").item(0).getParentNode().getNodeName());
-                           int nbObj = el.getElementsByTagName("object").getLength();
-	                	   for (int j = 0; j < nbObj; j++) {
-	                		   attribOject = dom.getElementsByTagName("object").item(j).getAttributes().item(0).getTextContent();
-		                        objectName = el.getElementsByTagName("objectName").item(j).getTextContent();
-		                        objectDetails = el.getElementsByTagName("objectDetails").item(j).getTextContent();
-		                        objectImage = el.getElementsByTagName("objectImage").item(j).getTextContent();
-		                        
-		                        // insertion dans la liste
-		                       myListeMsg.add(attribOject);
-		                       myListeMsg.add(objectName);
-		                       myListeMsg.add(objectDetails);
-		                       myListeMsg.add(objectImage);
-	                	   }
-	                	    // un arrayList qui contient tous les objects 
-	                	   allObject.add(myListeMsg); 
-	                   }
-	                }
-	            }
-	       }
-		return allObject;
-		
+    public static ArrayList recupSndObjBarter(String fichier) throws SAXException, Exception {
+        // le tableau contenant des informations sur les objects selon leur position
+        // nement dans le fichier
+        ArrayList<String> myListeMsg = new ArrayList<String>();
+        ArrayList allObject = new ArrayList<>();
+        // les varaibles
+        String objectName;
+        String objectDetails;
+        String objectImage;
+        String attribOject;
+
+        // gestion du DOM
+        DocumentBuilderFactory dbf = racineFichier();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        final Document dom = db
+                .parse(new File(System.getProperty("user.dir") + "/src/main/resources/dossierXML/" + fichier));
+        Element docEle = dom.getDocumentElement();
+        NodeList nl = docEle.getChildNodes();
+        if (nl != null) {
+            int length = nl.getLength();
+            for (int i = 0; i < length; i++) {
+                Node node = nl.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element el = (Element) nl.item(i);
+                    System.err.println(nl.item(i).getNodeName() + " : " + i);
+                    // if (el.getNodeName().contains("body")) {
+                    if (node.getNodeName().contains("body")) {
+                        NodeList bodyNodeListe = node.getChildNodes();
+                        System.err.println("heeete "+el.getElementsByTagName("sndObjectList").item(0).getParentNode().getNodeName());
+                        if (bodyNodeListe != null && bodyNodeListe.getLength() > 0) {
+                            /*
+                             * for (int j = 0; j < bodyNodeListe.getLength(); j++) { Node bodyNode =
+                             * bodyNodeListe.item(j); if (bodyNode.getNodeType() == Node.ELEMENT_NODE) {
+                             * System.err.println("Body Node Name " + bodyNode.getNodeName() + " n°" + j); }
+                             * }
+                             */
+                            printNode(bodyNodeListe);
+
+                        }
+
+                    }
+                }
+            }
+        }
+        return allObject;
+
     }
 
     public static ArrayList<ArrayList> listObjRcvBarter(String fichier) throws SAXException, Exception {
         try{
             Element rootFichier = builder(fichier);
             String choix = rootFichier.getElementsByTagName("barter").item(0).getChildNodes().item(1).getNodeName();
-            return recupSndObjBarter(fichier);
+            return recupRcvObjBarter(fichier);
             }catch(NullPointerException e){
                 return null;
             }
@@ -414,10 +415,29 @@ public class ParserXML {
         try{
             Element rootFichier = builder(fichier);
             String choix = rootFichier.getElementsByTagName("sndObjectList").item(0).getParentNode().getNodeName();
-            return recupRcvObjBarter(fichier);
+            return recupSndObjBarter(fichier);
             }catch(NullPointerException e){
                 return null;
             }
-	}
+    }
+    
+    private static void printNode(NodeList nodeList) {
+        if (nodeList != null && nodeList.getLength() > 0) {
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+
+                Node node = nodeList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                    System.err.println(node.getNodeName());
+                    printNode(node.getChildNodes());
+
+                }
+
+            }
+
+        }
+
+    }
 
 }
