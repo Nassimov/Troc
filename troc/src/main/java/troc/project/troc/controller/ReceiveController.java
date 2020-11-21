@@ -1,6 +1,7 @@
 package troc.project.troc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import troc.project.troc.ParserXML;
@@ -9,6 +10,8 @@ import troc.project.troc.repositories.TrocBddRepository;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,7 +23,7 @@ public class ReceiveController {
 
     TrocBdd t = new TrocBdd();
 
-    public void lireHeader(String fileName) throws Exception {
+    public int lireHeader(String fileName) throws Exception {
 
         //Pour enregistrer le Header
         t.setIdF(ParserXML.recupIdF(fileName));
@@ -98,7 +101,7 @@ public class ReceiveController {
             t.setRaisonNoCat(ParserXML.recupNoCatReason(fileName));
             
         //System.err.println(ParserXML.recupCatReqMsg(fileName));
-        
+
         bdd.save(t);
 
         /**************************Troc********************/
@@ -218,14 +221,43 @@ public class ReceiveController {
                 bdd.save(t2);
             }
         }
+
+        return t.getIdF();
         
     }
 
     @RequestMapping(value = "/ReceiveXML")
-    public String receiverPage() throws Exception {
+    public String receiverPage(Model m) throws Exception {
+        int idff;
+        List<TrocBdd> lb = new ArrayList<>();
+        List<String> listeRcvBarter = new ArrayList<>();
         try{
       
-            lireHeader("fichierXML.xml");
+            idff = lireHeader("fichierXML.xml");
+            lb=bdd.findAllByIdF(idff);
+
+            for(int i=0 ; i < lb.size() ; i++)
+            {
+                if(lb.get(i).getIdObjBartRec() != null)
+                {
+                    listeRcvBarter.add(lb.get(i).getIdObjBartRec());
+                    listeRcvBarter.add(lb.get(i).getObjBartNameRec());
+                    listeRcvBarter.add(lb.get(i).getObjBartDetailsRec());
+                    listeRcvBarter.add(lb.get(i).getObjBartImageRec());
+                }
+            }
+            if(listeRcvBarter.size() != 0)
+                m.addAttribute("listeRcvBarter",listeRcvBarter);
+            
+            m.addAttribute("idf", idff);
+            m.addAttribute("nbMsg", lb.get(0).getNbMsg());
+            m.addAttribute("transmitter", lb.get(0).getTransmitter());
+            m.addAttribute("receiver", lb.get(0).getReceiver());
+            m.addAttribute("idMsg", lb.get(0).getIdMsg());
+
+
+
+            System.err.println(lb.size());
 			
 		}catch(Exception e) {
             System.err.println("Error in xml file \n"+e);
