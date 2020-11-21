@@ -36,36 +36,46 @@ public class TrocBdd {
     int idPropMsgDeny;
     String raisonDeny;
 
-    int idObjTrocRec;
-    String objectNameRec;
-    String objectDetailsRec;
-    String objectImageRec;
+    String idObjBartRec;
+    String objBartNameRec;
+    String objBartDetailsRec;
+    String objBartImageRec;
 
-    int idObjTrocSend;
-    String objectNameSend;
-    String objectDetailsSend;
-    String objectImageSend;
+    String idObjBartSend;
+    String objBartNameSend;
+    String objBartDetailsSend;
+    String objBartImageSend;
 
-    int rcvObjectList;
-    int idPrevMsgReq;
+    String idPrevMsgBarter;
 
-    int sndObjectList;
-    int idPrevMsgDonn;
+    String idObjReq;
+    String objNameReqRcv;
+    String objDetailsReqRcv;
+    String objImageReqRcv;
+    String idPrevMsgReq;
 
-    int catRequest;
+    String idObjDonnSend;
+    String objDonnNameSend;
+    String objDonnDetailsSend;
+    String objDonnImageSend;
+    String idPrevMsgDonn;
 
-    int idCatRequestMsg;
+    String CatReq;
+
+
+    int idCatReqMsg;
     String catDate;
-    int idObjectCat;
-    String objectNameCat;
-    String objectDetailsCat;
-    String objectImageCat;
+    String idObjCat;
+    String objNameCat;
+    String objDetailsCat;
+    String objImageCat;
 
-    int idNoCatRequestMsg;
+    int idNoCatReqMsg;
     String raisonNoCat;
 
     int idMsgError;
     int idError;
+    String msgErr;
 
     public TrocBdd(){}
 
