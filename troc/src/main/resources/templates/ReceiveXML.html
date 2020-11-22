@@ -105,26 +105,27 @@ a {
   <h2>[[${transmitter}]]</h2>
   <hr />
   <br>
-  <p class="head">Barter recceived objects</p>
+  <p class="head" th:if= "${listeRcvBarter}">Barter recceived objects</p>
   <ul th:each="item : ${listeRcvBarter}">
     <li>[[${item}]]</li>
   </ul>
-  <p class="head">Barter send objects</p>
+  <p class="head" th:if= "${listeSndBarter}">Barter send objects</p>
   <ul th:each="item : ${listeSndBarter}">
     <li>[[${item}]]</li>
   </ul>
-  <p class="head">Request objects</p>
+  <p class="head" th:if= "${listeObjReq}">Request objects</p>
   <ul th:each="item : ${listeObjReq}">
     <li>[[${item}]]</li>
   </ul>
-  <p class="head">Donnation objects</p>
+  <p class="head" th:if= "${listeObjDonn}">Donnation objects</p>
   <ul th:each="item : ${listeObjDonn}">
     <li>[[${item}]]</li>
   </ul>
-  <p class="head">Catigorie objets</p>
-  <ul th:each="item : ${listeObjCat}">
-    <li>[[${item}]]</li>
-  </ul>
+  <p class="head" th:if= "${listeObjCat}">Catigorie objets</p>
+    <ul th:each="item : ${listeObjCat}">
+      <li>[[${item}]]</li>
+    </ul>
+  
   
 </div>
 <div class="right"></div>

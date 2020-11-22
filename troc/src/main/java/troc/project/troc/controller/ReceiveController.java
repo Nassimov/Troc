@@ -302,7 +302,7 @@ public class ReceiveController {
             m.addAttribute("authDateMsg", lb.get(0).getAuthDateMsg());
 
             m.addAttribute("idPropMsgAcc", lb.get(0).getIdPropMsgAcc());
-            
+
             m.addAttribute("idPropMsgDeny", lb.get(0).getIdPropMsgDeny());
             m.addAttribute("raisonDeny", lb.get(0).getRaisonDeny());
             
