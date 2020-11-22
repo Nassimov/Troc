@@ -109,32 +109,23 @@ a {
   <ul th:each="item : ${listeRcvBarter}">
     <li>[[${item}]]</li>
   </ul>
-  <p class="head">Skills</p>
-  <ul>
-    <li>Web Design with HTML & CSS</li>
+  <p class="head">Barter send objects</p>
+  <ul th:each="item : ${listeSndBarter}">
+    <li>[[${item}]]</li>
   </ul>
-  <p class="head">Education</p>
-  <ul>
-    <a href="http://www.wiltonhighschool.org/pages/Wilton_High_School">
-      <li>Wilton High School</li>
-    </a>
-    <!--Link-->
-    <a href="https://www.silvermineart.org/">
-      <li>Silvermine School of Arts</li>
-    </a>
-    <li>Codeacademy</li>
+  <p class="head">Request objects</p>
+  <ul th:each="item : ${listeObjReq}">
+    <li>[[${item}]]</li>
   </ul>
-  <p class="head">Experience</p>
-  <ul>
-    <li>Student Technology Intern for Wilton School District</li>
-    <li>Babysitter</li>
+  <p class="head">Donnation objects</p>
+  <ul th:each="item : ${listeObjDonn}">
+    <li>[[${item}]]</li>
   </ul>
-  <p class="head">Extracurriculars</p>
-  <ul>
-    <li>Recycling Club</li>
-    <li>Gardening Club</li>
-    <li>Book Club</li>
+  <p class="head">Catigorie objets</p>
+  <ul th:each="item : ${listeObjCat}">
+    <li>[[${item}]]</li>
   </ul>
+  
 </div>
 <div class="right"></div>
 <div id="footer">

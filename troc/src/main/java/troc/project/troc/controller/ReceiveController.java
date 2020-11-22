@@ -212,10 +212,14 @@ public class ReceiveController {
 
         List<TrocBdd> lb = new ArrayList<>();
         List<String> listeRcvBarter = new ArrayList<>();
+        List<String> listeSndBarter = new ArrayList<>();
+        List<String> listeObjReq = new ArrayList<>();
+        List<String> listeObjDonn = new ArrayList<>();
+        List<String> listeObjCat = new ArrayList<>();
         try {
-            if (idff == -9999999) {
+            if (idff == -9999999) 
                 idff = lireHeader("fichierXML.xml");
-            }
+            
             lb = bdd.findAllByIdF(idff);
 
             for (int i = 0; i < lb.size(); i++) {
@@ -225,17 +229,92 @@ public class ReceiveController {
                     listeRcvBarter.add(lb.get(i).getObjBartDetailsRec());
                     listeRcvBarter.add(lb.get(i).getObjBartImageRec());
                 }
+                if (lb.get(i).getIdObjBartSend() != null) {
+                    listeSndBarter.add(lb.get(i).getIdObjBartSend());
+                    listeSndBarter.add(lb.get(i).getObjBartNameSend());
+                    listeSndBarter.add(lb.get(i).getObjBartDetailsSend());
+                    listeSndBarter.add(lb.get(i).getObjBartImageSend());
+                }
+                if (lb.get(i).getIdObjReq() != null) {
+                    listeObjReq.add(lb.get(i).getIdObjReq());
+                    listeObjReq.add(lb.get(i).getObjNameReqRcv());
+                    listeObjReq.add(lb.get(i).getObjDetailsReqRcv());
+                    listeObjReq.add(lb.get(i).getObjImageReqRcv());
+                }
+                if (lb.get(i).getIdObjDonnSend() != null) {
+                    listeObjDonn.add(lb.get(i).getIdObjDonnSend());
+                    listeObjDonn.add(lb.get(i).getObjDonnNameSend());
+                    listeObjDonn.add(lb.get(i).getObjDonnDetailsSend());
+                    listeObjDonn.add(lb.get(i).getObjDonnImageSend());
+                }
+                if (lb.get(i).getIdObjCat() != null) {
+                    listeObjCat.add(lb.get(i).getIdObjCat());
+                    listeObjCat.add(lb.get(i).getObjNameCat());
+                    listeObjCat.add(lb.get(i).getObjDetailsCat());
+                    listeObjCat.add(lb.get(i).getObjImageCat());
+                }
             }
             if (listeRcvBarter.size() != 0)
+            {
+                m.addAttribute("idPrevMsgBarter", lb.get(0).getIdPrevMsgBarter());
                 m.addAttribute("listeRcvBarter", listeRcvBarter);
+            }
+            if (listeSndBarter.size() != 0)
+            {
+                m.addAttribute("idPrevMsgBarter", lb.get(0).getIdPrevMsgBarter());
+                m.addAttribute("listeSndBarter", listeSndBarter);
+            }
+            if (listeObjReq.size() != 0)
+            {
+                m.addAttribute("idPrevMsgReq", lb.get(0).getIdPrevMsgReq());
+                m.addAttribute("listeObjReq", listeObjReq);
+            }
+            if (listeObjDonn.size() != 0)
+            {
+                m.addAttribute("idPrevMsgDonn", lb.get(0).getIdPrevMsgDonn());
+                m.addAttribute("listeObjDonn", listeObjDonn);
+            }
+            if (listeObjCat.size() != 0)
+            {
+                m.addAttribute("idCatReqMsg", lb.get(0).getIdCatReqMsg());
+                m.addAttribute("catDate", lb.get(0).getCatDate());
+                m.addAttribute("listeObjCat", listeObjCat);
+            }
 
+            /****************Objets obligatoires a inserer*************/
             m.addAttribute("idf", idff);
             m.addAttribute("nbMsg", lb.get(0).getNbMsg());
+            m.addAttribute("idUserTrans", lb.get(0).getIdUserTrans());
             m.addAttribute("transmitter", lb.get(0).getTransmitter());
+            m.addAttribute("idUserRec", lb.get(0).getIdUserRec());
             m.addAttribute("receiver", lb.get(0).getReceiver());
             m.addAttribute("idMsg", lb.get(0).getIdMsg());
 
-            System.err.println(lb.size());
+            /****************Objets optionnelles*************/
+            m.addAttribute("authRef", lb.get(0).getAuthRef());
+            m.addAttribute("authDate", lb.get(0).getAuthDate());
+
+            m.addAttribute("dateMsg", lb.get(0).getDateMsg());
+            m.addAttribute("valideDuree", lb.get(0).getValideDuree());
+
+            m.addAttribute("authReq", lb.get(0).getAuthReq());
+            m.addAttribute("authRefMsg", lb.get(0).getAuthRefMsg());
+            m.addAttribute("authDateMsg", lb.get(0).getAuthDateMsg());
+
+            m.addAttribute("idPropMsgAcc", lb.get(0).getIdPropMsgAcc());
+            
+            m.addAttribute("idPropMsgDeny", lb.get(0).getIdPropMsgDeny());
+            m.addAttribute("raisonDeny", lb.get(0).getRaisonDeny());
+            
+            m.addAttribute("catReq", lb.get(0).getCatReq());
+
+            m.addAttribute("idNoCatReqMsg", lb.get(0).getIdNoCatReqMsg());
+            m.addAttribute("raisonNoCat", lb.get(0).getRaisonNoCat());
+
+            m.addAttribute("idMsgError", lb.get(0).getIdMsgError());
+            m.addAttribute("idError", lb.get(0).getIdError());
+            m.addAttribute("msgErr", lb.get(0).getMsgErr());
+            //System.err.println(lb.size());
 
         } catch (Exception e) {
             System.err.println("Error in xml file \n" + e);
