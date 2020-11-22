@@ -18,11 +18,11 @@
 							<authRef>ggfgfgdsggs</authRef>
 							<authDate>2001-11-13T12:34:55</authDate>
 						</auth> -->
-						<deny>
+						<!-- <deny>
 							<idPropositionMsg>23455</idPropositionMsg>
 							<reason> de mauvaise qualite</reason>
-						</deny>
-						<barter>
+						</deny> -->
+						<!-- <barter>
 							<rcvObjectList>
 								<object idObject="0987">
 									<objectName>montre</objectName>
@@ -43,7 +43,7 @@
 									</object>
 							</sndObjectList>
 							<idPrevMsg></idPrevMsg>
-						</barter>
+						</barter> -->
 
 						 <request>
 							<rcvObjectList>
@@ -79,7 +79,34 @@
 							<idCatRequestMsg>5677</idCatRequestMsg>
 							<reason>pas interesser</reason>
 						</noCat>-->
-						<errorMsg idMsg="987" idError="543"> message error</errorMsg> 
+						<!-- <errorMsg idMsg="987" idError="543"> message error</errorMsg> --> 
+					</message>
+					<message idMsg="3399">
+						<dateMsg>2020-11-13T12:34:58</dateMsg>
+						<validityDuration>UUUBB</validityDuration>
+						<barter>
+							<rcvObjectList>
+								<object idObject="0987">
+									<objectName>montre</objectName>
+									<objectDetails> une montre en or</objectDetails>
+									<objectImage>maronn</objectImage> 
+								</object>
+								<object idObject="5555">
+									<objectName>test1</objectName>
+									<objectDetails> testname</objectDetails>
+									<objectImage>testimage</objectImage> 
+								</object>
+							</rcvObjectList>
+							<sndObjectList>
+									<object idObject="0654">
+										<objectName>mocassin</objectName>
+										<objectDetails> de londre </objectDetails>
+										<objectImage>bleu</objectImage> 
+									</object>
+							</sndObjectList>
+							<idPrevMsg></idPrevMsg>
+						</barter>
+	
 					</message>
 				</listMsg>
 			</body>

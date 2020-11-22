@@ -8,8 +8,6 @@ import troc.project.troc.ParserXML;
 import troc.project.troc.model.TrocBdd;
 import troc.project.troc.repositories.TrocBddRepository;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,74 +34,81 @@ public class ReceiveController {
         // optionel
         t.setAuthRef(ParserXML.recupAuthRefHead(fileName));
         t.setAuthDate(ParserXML.recupDateHead(fileName));
-
-        // Enregistrer le body
-        t.setIdMsg(ParserXML.IdMsg(fileName));
-        t.setDateMsg(ParserXML.recupDateMsg(fileName));
-        t.setValideDuree(ParserXML.recupDateValid(fileName));
-        // optionnel
-        t.setAuthReq(ParserXML.AuthReq(fileName));
-        t.setAuthRefMsg(ParserXML.recupAuthRef(fileName));
-        t.setAuthDateMsg(ParserXML.recupDate(fileName));
-        t.setIdPropMsgAcc(ParserXML.recupIdPropMsgAcc(fileName));
-        t.setIdPropMsgDeny(ParserXML.recupIdPropMsgDeny(fileName));
-
-        t.setCatReq(ParserXML.recupCatReq(fileName));
-
-        t.setCatDate(ParserXML.recupCatDate(fileName));
-
-        t.setIdMsgError(ParserXML.idMsgErr(fileName));
-        t.setIdError(ParserXML.idErr(fileName));
-        t.setMsgErr(ParserXML.errMsg(fileName));
-
-        if (ParserXML.recupIdPropMsgAcc(fileName) == -1)
-            t.setIdPropMsgAcc(-1);
-        else
-            t.setIdPropMsgAcc(ParserXML.recupIdPropMsgAcc(fileName));
-
-        if (ParserXML.recupIdPropMsgDeny(fileName) == -1)
-            t.setIdPropMsgDeny(-1);
-        else
-            t.setIdPropMsgDeny(ParserXML.recupIdPropMsgDeny(fileName));
-
-        if (ParserXML.reasonDeny(fileName) == null)
-            t.setRaisonDeny(null);
-        else
-            t.setRaisonDeny(ParserXML.reasonDeny(fileName));
-
-        if (ParserXML.recupPrevMsgBart(fileName) == null)
-            t.setIdPrevMsgBarter(null);
-        else
-            t.setIdPrevMsgBarter(ParserXML.recupPrevMsgBart(fileName));
-
-        if (ParserXML.recupPrevMsgReq(fileName) == null)
-            t.setIdPrevMsgReq(null);
-        else
-            t.setIdPrevMsgReq(ParserXML.recupPrevMsgReq(fileName));
-
-        if (ParserXML.recupPrevMsgDonn(fileName) == null)
-            t.setIdPrevMsgDonn(null);
-        else
-            t.setIdPrevMsgDonn(ParserXML.recupPrevMsgDonn(fileName));
-
-        if (ParserXML.recupCatReqMsg(fileName) == -1)
-            t.setIdCatReqMsg(-1);
-        else
-            t.setIdCatReqMsg(ParserXML.recupCatReqMsg(fileName));
-
-        if (ParserXML.recupNoCatReqMsg(fileName) == -1)
-            t.setIdNoCatReqMsg(-1);
-        else
-            t.setIdNoCatReqMsg(ParserXML.recupNoCatReqMsg(fileName));
-
-        if (ParserXML.recupNoCatReason(fileName) == null)
-            t.setRaisonNoCat(null);
-        else
-            t.setRaisonNoCat(ParserXML.recupNoCatReason(fileName));
-
-        // System.err.println(ParserXML.recupCatReqMsg(fileName));
-
         bdd.save(t);
+
+        for(int i=0 ; i < ParserXML.nbMsgReel(fileName).size(); i++)
+        {
+            TrocBdd t2 = new TrocBdd();
+            
+            // Enregistrer le body
+            //t2.setIdMsg(ParserXML.idMsg(fileName));
+
+            t2.setDateMsg(ParserXML.recupDateMsg(fileName));
+            t2.setValideDuree(ParserXML.recupDateValid(fileName));
+
+            // optionnel
+            t2.setAuthReq(ParserXML.AuthReq(fileName));
+            t2.setAuthRefMsg(ParserXML.recupAuthRef(fileName));
+            t2.setAuthDateMsg(ParserXML.recupDate(fileName));
+            t2.setIdPropMsgAcc(ParserXML.recupIdPropMsgAcc(fileName));
+            t2.setIdPropMsgDeny(ParserXML.recupIdPropMsgDeny(fileName));
+            t2.setCatReq(ParserXML.recupCatReq(fileName));
+            t2.setCatDate(ParserXML.recupCatDate(fileName));
+            t2.setIdMsgError(ParserXML.idMsgErr(fileName));
+            t2.setIdError(ParserXML.idErr(fileName));
+            t2.setMsgErr(ParserXML.errMsg(fileName));
+
+            if (ParserXML.recupIdPropMsgAcc(fileName) == -1)
+                t.setIdPropMsgAcc(-1);
+            else
+                t.setIdPropMsgAcc(ParserXML.recupIdPropMsgAcc(fileName));
+
+            if (ParserXML.recupIdPropMsgDeny(fileName) == -1)
+                t.setIdPropMsgDeny(-1);
+            else
+                t.setIdPropMsgDeny(ParserXML.recupIdPropMsgDeny(fileName));
+
+            if (ParserXML.reasonDeny(fileName) == null)
+                t.setRaisonDeny(null);
+            else
+                t.setRaisonDeny(ParserXML.reasonDeny(fileName));
+
+            if (ParserXML.recupPrevMsgBart(fileName) == null)
+                t.setIdPrevMsgBarter(null);
+            else
+                t.setIdPrevMsgBarter(ParserXML.recupPrevMsgBart(fileName));
+
+            if (ParserXML.recupPrevMsgReq(fileName) == null)
+                t.setIdPrevMsgReq(null);
+            else
+                t.setIdPrevMsgReq(ParserXML.recupPrevMsgReq(fileName));
+
+            if (ParserXML.recupPrevMsgDonn(fileName) == null)
+                t.setIdPrevMsgDonn(null);
+            else
+                t.setIdPrevMsgDonn(ParserXML.recupPrevMsgDonn(fileName));
+
+            if (ParserXML.recupCatReqMsg(fileName) == -1)
+                t.setIdCatReqMsg(-1);
+            else
+                t.setIdCatReqMsg(ParserXML.recupCatReqMsg(fileName));
+
+            if (ParserXML.recupNoCatReqMsg(fileName) == -1)
+                t.setIdNoCatReqMsg(-1);
+            else
+                t.setIdNoCatReqMsg(ParserXML.recupNoCatReqMsg(fileName));
+
+            if (ParserXML.recupNoCatReason(fileName) == null)
+                t.setRaisonNoCat(null);
+            else
+                t.setRaisonNoCat(ParserXML.recupNoCatReason(fileName));
+
+            // System.err.println(ParserXML.recupCatReqMsg(fileName));
+            t2.setIdF(t.getIdF());
+            t2.setIdMsg(ParserXML.nbMsgReel(fileName).get(i));
+            bdd.save(t2);
+        }
+        
 
         /************************** Troc ********************/
 
@@ -121,6 +126,7 @@ public class ReceiveController {
                 t2.setObjBartDetailsRec((String) ParserXML.listObjRcvBarter(fileName).get(i + 2));
                 t2.setObjBartImageRec((String) ParserXML.listObjRcvBarter(fileName).get(i + 3));
                 t2.setIdF(t.getIdF());
+                t2.setIdMsg(ParserXML.SavoirIdMsg(fileName, "barter"));
                 bdd.save(t2);
             }
         }
@@ -139,6 +145,7 @@ public class ReceiveController {
                 t2.setObjBartDetailsSend((String) ParserXML.listObjSndBarter(fileName).get(i + 2));
                 t2.setObjBartImageSend((String) ParserXML.listObjSndBarter(fileName).get(i + 3));
                 t2.setIdF(t.getIdF());
+                t2.setIdMsg(ParserXML.SavoirIdMsg(fileName, "barter"));
                 bdd.save(t2);
             }
         }
@@ -159,6 +166,7 @@ public class ReceiveController {
                 t2.setObjDetailsReqRcv((String) ParserXML.listObjRcvReq(fileName).get(i + 2));
                 t2.setObjImageReqRcv((String) ParserXML.listObjRcvReq(fileName).get(i + 3));
                 t2.setIdF(t.getIdF());
+                t2.setIdMsg(ParserXML.SavoirIdMsg(fileName, "request"));
                 bdd.save(t2);
             }
         }
@@ -179,6 +187,7 @@ public class ReceiveController {
                 t2.setObjDonnDetailsSend((String) ParserXML.listObjSndDonn(fileName).get(i + 2));
                 t2.setObjDonnImageSend((String) ParserXML.listObjSndDonn(fileName).get(i + 3));
                 t2.setIdF(t.getIdF());
+                t2.setIdMsg(ParserXML.SavoirIdMsg(fileName, "donation"));
                 bdd.save(t2);
             }
         }
@@ -199,6 +208,7 @@ public class ReceiveController {
                 t2.setObjDetailsCat((String) ParserXML.listObjCat(fileName).get(i + 2));
                 t2.setObjImageCat((String) ParserXML.listObjCat(fileName).get(i + 3));
                 t2.setIdF(t.getIdF());
+                t2.setIdMsg(ParserXML.SavoirIdMsg(fileName, "cat"));
                 bdd.save(t2);
             }
         }
@@ -314,7 +324,10 @@ public class ReceiveController {
             m.addAttribute("idMsgError", lb.get(0).getIdMsgError());
             m.addAttribute("idError", lb.get(0).getIdError());
             m.addAttribute("msgErr", lb.get(0).getMsgErr());
-            //System.err.println(lb.size());
+            //System.err.println("Barter id : "+ParserXML.SavoirIdMsg("fichierXML.xml", "barter"));
+            //System.err.println("Req id : "+ParserXML.SavoirIdMsg("fichierXML.xml", "request"));
+            
+            //System.err.println("Recever : "+ParserXML.nbMsgReel("fichierXML.xml"));
 
         } catch (Exception e) {
             System.err.println("Error in xml file \n" + e);

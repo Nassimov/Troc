@@ -101,10 +101,16 @@ public class ParserXML {
         * @param fichier
         * @return IdUser de recepteur
         */
-        public static int IdMsg(String fichier) throws    Exception{
+        public static int idMsg(String fichier) throws Exception{
             Element rootFichier = builder(fichier);
             String idMsg = rootFichier.getElementsByTagName("message").item(0).getAttributes().item(0).getTextContent();
             return Integer.parseInt(idMsg);
+        }
+
+        public static int SavoirIdMsg(String fichier, String attribute) throws Exception{
+            Element rootFichier = builder(fichier);
+            String idMsgFinal = rootFichier.getElementsByTagName(attribute).item(0).getParentNode().getAttributes().item(0).getTextContent();
+            return Integer.parseInt(idMsgFinal);
         }
 
         /**
@@ -336,6 +342,7 @@ public class ParserXML {
         }
         }
 
+
         /**
          * 
          * @param fichier
@@ -346,6 +353,31 @@ public class ParserXML {
         public static int nombreMsg(String fichier) throws    Exception {
             Element rootFichier = builder(fichier);
             return Integer.parseInt(rootFichier.getElementsByTagName("nbMsg").item(0).getTextContent());
+        }
+
+        public static ArrayList<Integer> nbMsgReel(String fichier) throws Exception {
+        
+            ArrayList<Integer> myListeMsg = new ArrayList<Integer>(); // le tableau contient toutes les informations sur la liste de msg
+            String  attribObject;
+            
+            Element rootFichier = builder(fichier); // la racine du fichier
+            
+            // recuperation des informations sur les objects dans la liste d'object
+            NodeList myOfNodes1 = rootFichier.getElementsByTagName("listMsg");
+            
+            for (int i = 0; i < myOfNodes1.getLength(); i++) {
+                //System.out.println(i);
+                Element newElt1 = (Element) myOfNodes1.item(i);
+                int nbObj = newElt1.getElementsByTagName("message").getLength();
+                    for (int j = 0; j < nbObj; j++) {
+                        // recuperation des valeurs des object
+                        attribObject = rootFichier.getElementsByTagName("message").item(j).getAttributes().item(0).getTextContent();
+            
+                        myListeMsg.add(Integer.parseInt(attribObject));
+                    }
+            } 
+            
+            return myListeMsg;
         }
         
     public static ArrayList<String> recupReceiverObjet(String fichier) throws Exception{
