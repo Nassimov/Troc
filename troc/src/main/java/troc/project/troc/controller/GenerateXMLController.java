@@ -24,6 +24,7 @@ import org.w3c.dom.Element;
 
 import troc.project.troc.model.FileTroc;
 import troc.project.troc.model.ListMsg;
+import troc.project.troc.model.Message;
 import troc.project.troc.model.CatObjects;
 import troc.project.troc.model.ObjectRCVList;
 import troc.project.troc.model.ObjectSNDList;
@@ -31,6 +32,7 @@ import troc.project.troc.model.ObjectSNDList;
 import troc.project.troc.repositories.CatObjectRepository;
 import troc.project.troc.repositories.FileTrocRepository;
 import troc.project.troc.repositories.ListMsgRepository;
+import troc.project.troc.repositories.MessageRepository;
 import troc.project.troc.repositories.ObjectRCVListRepository;
 import troc.project.troc.repositories.ObjectSNDListRepository;
 
@@ -399,8 +401,6 @@ public class GenerateXMLController {
                                                         + lastFIle.getHeader().getReceiver().getLastName() + ".xml"));
 
                         transformer.transform(domSource, streamResult);
-
-                        System.out.println("Fichier XML créé");
 
                 } catch (
 
