@@ -102,35 +102,124 @@ a {
 <div class="stuff">
   <br><br>
   <h1>Fichier recu</h1>
-  <h2>[[${transmitter}]]</h2>
+  <h2>transmitter [[${transmitter}]] : id [[${idUserTrans}]]</h2>
   <hr />
   <br>
-  <p class="head" th:if= "${listeRcvBarter}">Barter recceived objects</p>
+  <p>receiver [[${receiver}]] : id [[${idUserRec}]]</p>
+  <p th:if= "${authRef}"> authRef : [[${authRef}]]</p>
+  <p th:if= "${authDate}"> authDate : [[${authDate}]]</p>
+  <ul th:each="items : ${listeNbrsMsg}">
+ 
+  <hr>
+  <h1>Id Message [[${items}]]</h1>
+
+  <!-- date message -->
+  <ul th:each="item : ${listeDateMsg}">
+    <p class="head" th:if="${item.value} == ${items}">Date message [[${item.key}]] </p>
+  </ul>
+
+  <!-- duree validite -->
+  <ul th:each="item : ${listeValDu}">
+    <p class="head" th:if="${item.value} == ${items}">Validation duration [[${item.key}]] </p>
+  </ul>
+
+  <!-- Auth request -->
+  <ul th:each="item : ${listeAuthReq}">
+    <p class="head" th:if="${item.value} == ${items}">Validation duration [[${item.key}]] </p>
+  </ul>
+
+  <!-- Barter -->
   <ul th:each="item : ${listeRcvBarter}">
-    <li>[[${item}]]</li>
-  </ul>
-  <p class="head" th:if= "${listeSndBarter}">Barter send objects</p>
-  <ul th:each="item : ${listeSndBarter}">
-    <li>[[${item}]]</li>
-  </ul>
-  <p class="head" th:if= "${listeObjReq}">Request objects</p>
-  <ul th:each="item : ${listeObjReq}">
-    <li>[[${item}]]</li>
-  </ul>
-  <p class="head" th:if= "${listeObjDonn}">Donnation objects</p>
-  <ul th:each="item : ${listeObjDonn}">
-    <li>[[${item}]]</li>
-  </ul>
-  <p class="head" th:if= "${listeObjCat}">Catigorie objets</p>
-    <ul th:each="item : ${listeObjCat}">
-      <li>[[${item}]]</li>
+    <p class="head" th:if="${listeRcvBarter} AND ${item.value} == ${items}">Barter recceived objects</p>
+    <ul th:each="iteme : ${item.key}">
+      <span th:if= "${item.value} == ${items}">
+      <li>[[${iteme}]]</li>
+    </span>
     </ul>
+  </ul>
+
+  <ul th:each="item : ${listeSndBarter}">
+    <p class="head" th:if="${listeSndBarter} AND ${item.value} == ${items}">Barter Send objects</p>
+    <ul th:each="iteme : ${item.key}">
+      <span th:if= "${item.value} == ${items}">
+      <li>[[${iteme}]]</li>
+    </span>
+    </ul>
+  </ul>
+
+    <!-- Request -->
+    <ul th:each="item : ${listeObjReq}">
+      <p class="head" th:if="${listeObjReq} AND ${item.value} == ${items}">Request recceived objects</p>
+    <ul th:each="iteme : ${item.key}">
+      <span th:if= "${item.value} == ${items}">
+      <li>[[${iteme}]]</li>
+    </span>
+    </ul>
+  </ul>
+
+   <!-- Donation -->
+   <ul th:each="item : ${listeObjDonn}">
+    <p class="head" th:if="${listeObjDonn} AND ${item.value} == ${items}">Donnation send objects</p>
+     <ul th:each="iteme : ${item.key}">
+       <span th:if= "${item.value} == ${items}">
+       <li>[[${iteme}]]</li>
+     </span>
+     </ul>
+   </ul>
+
+   <!-- prev message-->
+  <ul th:each="item : ${idPrevMsg}">
+    <p class="head" th:if="${item.value} == ${items}">prev msg [[${item.key}]] </p>
+  </ul>
+
+   <!-- cat -->
+   <ul th:each="item : ${restCat}">
+    <p class="head" th:if="${restCat} AND ${item.value} == ${items}">Cat id message and date</p>
+     <ul th:each="iteme : ${item.key}">
+       <span th:if= "${item.value} == ${items}">
+       <li>[[${iteme}]]</li>  
+      </span>
+     </ul>
+   </ul>
+   <ul th:each="item : ${listeObjCat}">
+    <p class="head" th:if="${listeObjCat} AND ${item.value} == ${items}">catigorie objects</p>
+     <ul th:each="iteme : ${item.key}">
+       <span th:if= "${item.value} == ${items}">
+       <li>[[${iteme}]]</li>  
+      </span>
+     </ul>
+   </ul>
+
+    <!-- Nocat -->
+    <ul th:each="item : ${noCat}">
+      <p class="head" th:if="${noCat} AND ${item.value} == ${items}">NoCat id message and reason</p>
+       <ul th:each="iteme : ${item.key}">
+         <span th:if= "${item.value} == ${items}">
+         <li>[[${iteme}]]</li>  
+        </span>
+       </ul>
+     </ul>
+
+     <!-- Err -->
+    <ul th:each="item : ${err}">
+      <p class="head" th:if="${err} AND ${item.value} == ${items}">err id message and id error and message error</p>
+       <ul th:each="iteme : ${item.key}">
+         <span th:if= "${item.value} == ${items}">
+         <li>[[${iteme}]]</li>  
+        </span>
+       </ul>
+     </ul>
+
+   
+    
+</ul>
+  <hr>
   
   
 </div>
 <div class="right"></div>
 <div id="footer">
-  <h2 id="name">Emily</h2></div>
+  <h2 id="name">Ramez</h2></div>
     
 </body>
 </html>

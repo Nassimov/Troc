@@ -24,19 +24,19 @@
 						</deny> -->
 						<!-- <barter>
 							<rcvObjectList>
-								<object idObject="0987">
+								<object idObject="5858">
 									<objectName>montre</objectName>
 									<objectDetails> une montre en or</objectDetails>
 									<objectImage>maronn</objectImage> 
 								</object>
-								<object idObject="5555">
+								<object idObject="7979">
 									<objectName>test1</objectName>
 									<objectDetails> testname</objectDetails>
 									<objectImage>testimage</objectImage> 
 								</object>
 							</rcvObjectList>
 							<sndObjectList>
-									<object idObject="0654">
+									<object idObject="5869">
 										<objectName>mocassin</objectName>
 										<objectDetails> de londre </objectDetails>
 										<objectImage>bleu</objectImage> 
@@ -45,7 +45,7 @@
 							<idPrevMsg></idPrevMsg>
 						</barter> -->
 
-						 <request>
+						 <!-- <request>
 							<rcvObjectList>
 								<object idObject="0653">
 										<objectName>chemise</objectName>
@@ -54,7 +54,7 @@
 									</object>
 							</rcvObjectList>
 							<idPrevMsg>1</idPrevMsg>
-						</request>
+						</request> -->
 						<!--<donation>
 							<sndObjectList>
 								<object idObject="0652">
@@ -66,46 +66,57 @@
 							<idPrevMsg></idPrevMsg>
 						</donation>
 						<catRequest/>
+						-->
 						<cat>
-							<idCatRequestMsg></idCatRequestMsg>
+							<idCatRequestMsg>7788</idCatRequestMsg>
 							<catDate>2005-11-13T12:34:55</catDate>
 							<object idObject="123">
-								<objectName></objectName>
-								<objectDetails></objectDetails>
-								<objectImage></objectImage>
+								<objectName>gtgt</objectName>
+								<objectDetails>fefe</objectDetails>
+								<objectImage>szszs</objectImage>
 							</object>
 						</cat>
-						<noCat>
+						<!-- <noCat>
 							<idCatRequestMsg>5677</idCatRequestMsg>
 							<reason>pas interesser</reason>
-						</noCat>-->
+						</noCat> -->
 						<!-- <errorMsg idMsg="987" idError="543"> message error</errorMsg> --> 
 					</message>
 					<message idMsg="3399">
 						<dateMsg>2020-11-13T12:34:58</dateMsg>
 						<validityDuration>UUUBB</validityDuration>
-						<barter>
+						 <barter>
 							<rcvObjectList>
-								<object idObject="0987">
-									<objectName>montre</objectName>
-									<objectDetails> une montre en or</objectDetails>
-									<objectImage>maronn</objectImage> 
+								<object idObject="0787">
+									<objectName>montre2</objectName>
+									<objectDetails> une montre 2</objectDetails>
+									<objectImage>maronn2</objectImage> 
 								</object>
-								<object idObject="5555">
-									<objectName>test1</objectName>
-									<objectDetails> testname</objectDetails>
-									<objectImage>testimage</objectImage> 
+								<object idObject="5567">
+									<objectName>test2</objectName>
+									<objectDetails> testname2</objectDetails>
+									<objectImage>testimage2</objectImage> 
 								</object>
 							</rcvObjectList>
 							<sndObjectList>
 									<object idObject="0654">
-										<objectName>mocassin</objectName>
-										<objectDetails> de londre </objectDetails>
-										<objectImage>bleu</objectImage> 
+										<objectName>mocassin2</objectName>
+										<objectDetails> de londre 2 </objectDetails>
+										<objectImage>bleu 2</objectImage> 
 									</object>
 							</sndObjectList>
-							<idPrevMsg></idPrevMsg>
-						</barter>
+							<idPrevMsg>1425</idPrevMsg>
+						</barter> 
+						<!-- <request>
+							<rcvObjectList>
+								<object idObject="1144">
+										<objectName>test req</objectName>
+										<objectDetails> det test </objectDetails>
+										<objectImage>test img</objectImage> 
+									</object>
+							</rcvObjectList>
+							<idPrevMsg>1</idPrevMsg>
+						</request> -->
 	
 					</message>
 				</listMsg>

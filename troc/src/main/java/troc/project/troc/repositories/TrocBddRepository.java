@@ -11,4 +11,5 @@ import troc.project.troc.model.TrocBdd;
 public interface TrocBddRepository extends CrudRepository<TrocBdd, Long>{
     public List<TrocBdd> findAll();
     public List<TrocBdd> findAllByIdF(int idF);
+    public List<TrocBdd> findAllByIdMsg(int idMsg);
 }

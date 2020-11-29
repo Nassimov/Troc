@@ -46,22 +46,19 @@ public class TrocBdd {
     String objBartDetailsSend;
     String objBartImageSend;
 
-    String idPrevMsgBarter;
+    int idPrevMsg;
 
     String idObjReq;
     String objNameReqRcv;
     String objDetailsReqRcv;
     String objImageReqRcv;
-    String idPrevMsgReq;
 
     String idObjDonnSend;
     String objDonnNameSend;
     String objDonnDetailsSend;
     String objDonnImageSend;
-    String idPrevMsgDonn;
 
     String CatReq;
-
 
     int idCatReqMsg;
     String catDate;
