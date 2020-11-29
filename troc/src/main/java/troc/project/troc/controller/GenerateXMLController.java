@@ -36,7 +36,6 @@ import troc.project.troc.repositories.ObjectSNDListRepository;
 
 @Controller
 public class GenerateXMLController {
-        public static final String xmlFilePath = "D:\\M1 DSC\\Document\\TrocProject\\Troc\\troc\\src\\main\\resources\\files\\sndFiles\\xmlfile.xml";
         @Autowired
         FileTrocRepository fileTrocRepository;
         @Autowired
@@ -390,7 +389,12 @@ public class GenerateXMLController {
                         TransformerFactory transformerFactory = TransformerFactory.newInstance();
                         Transformer transformer = transformerFactory.newTransformer();
                         DOMSource domSource = new DOMSource(document);
-                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        StreamResult streamResult = new StreamResult(new File(
+                                        "D:\\M1 DSC\\Document\\TrocProject\\Troc\\troc\\src\\main\\resources\\files\\sndFiles\\De "
+                                                        + lastFIle.getHeader().getTransmitter().getName() + "  "
+                                                        + lastFIle.getHeader().getTransmitter().getLastName() + " Vers "
+                                                        + lastFIle.getHeader().getReceiver().getName() + " "
+                                                        + lastFIle.getHeader().getReceiver().getLastName() + ".xml"));
 
                         transformer.transform(domSource, streamResult);
 
