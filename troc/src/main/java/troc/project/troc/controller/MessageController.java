@@ -60,7 +60,7 @@ public class MessageController {
                 int m1 = Integer.parseInt(messageTime.split(":")[1]);
                 Date newDate = new Date(goodYear, month, date, h1, m1);
 
-                messageRepository.save(new Message(
+                Message newMessage = new Message(
                                 acceptRepository.findById(accept).isPresent() ? acceptRepository.findById(accept).get()
                                                 : null,
                                 authRepository.findById(auth).isPresent() ? authRepository.findById(auth).get() : null,
@@ -81,8 +81,9 @@ public class MessageController {
                                 requestRepository.findById(request).isPresent()
                                                 ? requestRepository.findById(request).get()
                                                 : null,
-                                validityDuration, newDate));
+                                validityDuration, newDate); // juste pour
 
+                messageRepository.save(newMessage);
                 return "redirect:/nextStep";
         }
 }

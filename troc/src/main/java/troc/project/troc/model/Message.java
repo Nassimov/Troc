@@ -46,6 +46,8 @@ public class Message {
     Long validityDuration;
     @Column(name = "messageDate")
     Date messageDate;
+    @Column(name = "idMsg")
+    Long idMsg = null;
 
     public Message() {
 
