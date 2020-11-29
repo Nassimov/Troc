@@ -50,6 +50,8 @@ public class GenerateXMLController {
         @RequestMapping(value = "/generateXML", method = RequestMethod.GET)
         public String generateXML() {
                 FileTroc lastFIle = fileTrocRepository.findTopByOrderByIdFileTrocDesc();
+                lastFIle.setIdf(lastFIle.getIdFileTroc());
+                fileTrocRepository.save(lastFIle);
                 try {
 
                         DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -73,7 +75,7 @@ public class GenerateXMLController {
 
                         Attr attr = document.createAttribute("idF");
 
-                        attr.setValue(lastFIle.getIdFileTroc() + "");
+                        attr.setValue(lastFIle.getIdf() + "");
                         header.setAttributeNode(attr);
 
                         Element nbMsg = document.createElement("nbMsg");
