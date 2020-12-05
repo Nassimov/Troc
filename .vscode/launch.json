@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TrocApplication<troc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "troc.project.troc.TrocApplication",
+            "projectName": "troc",
+            "args": ""
+        }
+    ]
+}
