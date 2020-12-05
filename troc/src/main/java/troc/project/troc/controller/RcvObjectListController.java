@@ -19,6 +19,6 @@ public class RcvObjectListController {
 
         rcvObjectListRepository.save(new RcvObjectList());
 
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }

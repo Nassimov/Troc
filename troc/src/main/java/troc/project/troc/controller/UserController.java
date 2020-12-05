@@ -21,7 +21,7 @@ public class UserController {
 
         UserTroc user = new UserTroc(name, lastName);
         userRepositories.save(user);
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

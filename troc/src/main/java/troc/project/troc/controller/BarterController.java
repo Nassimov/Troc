@@ -28,7 +28,7 @@ public class BarterController {
 
         barterRepository.save(new Barter(idPrevMsg, rcvObjectListRepository.findById(rcvObjList).get(),
                 sndObjectListRepository.findById(sndObjList).get()));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

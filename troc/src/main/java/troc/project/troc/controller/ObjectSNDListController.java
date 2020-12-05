@@ -29,6 +29,6 @@ public class ObjectSNDListController {
         SndObjectList sndsnd = sndObjectListRepository.findById(sndObjList).get();
         Object objobj = objectRepository.findById(obj).get();
         objectSNDListRepository.save(new ObjectSNDList(objobj, sndsnd));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }

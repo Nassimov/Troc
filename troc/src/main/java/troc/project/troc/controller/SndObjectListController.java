@@ -22,6 +22,6 @@ public class SndObjectListController {
 
         sndObjectListRepository.save(new SndObjectList());
 
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }

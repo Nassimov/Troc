@@ -434,7 +434,7 @@ public class GenerateXMLController {
 
                 // gérer la taille du fichier:
 
-                return "redirect:/";
+                return "successGeneration";
         }
 
 }

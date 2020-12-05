@@ -20,7 +20,7 @@ public class DenyController {
     public String addDenyResponse(@RequestParam String idPropositionMsg, @RequestParam String reason, Model m) {
 
         denyRepositories.save(new Deny(idPropositionMsg, reason));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }
