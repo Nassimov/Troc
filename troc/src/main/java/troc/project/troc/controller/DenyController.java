@@ -17,7 +17,7 @@ public class DenyController {
     DenyRepository denyRepositories;
 
     @RequestMapping(value = "/addDenyResponse", method = RequestMethod.POST)
-    public String addDenyResponse(@RequestParam String idPropositionMsg, @RequestParam String reason, Model m) {
+    public String addDenyResponse(@RequestParam Integer idPropositionMsg, @RequestParam String reason, Model m) {
 
         denyRepositories.save(new Deny(idPropositionMsg, reason));
         return "redirect:/firstStep";
