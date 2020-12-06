@@ -30,7 +30,7 @@ public class CatController {
         int m1 = Integer.parseInt(time.split(":")[1]);
         Date newDate = new Date(goodYear, month, date, h1, m1);
         catRepositories.save(new Cat(newDate));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

@@ -24,6 +24,6 @@ public class RequestController {
     public String addRequest(@RequestParam Long idPrevMsg, @RequestParam Long rcvObjList, Model m) {
         RcvObjectList rcvrcv = rcvObjectListRepository.findById(rcvObjList).get();
         requestRepository.save(new Request(idPrevMsg, rcvrcv));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }

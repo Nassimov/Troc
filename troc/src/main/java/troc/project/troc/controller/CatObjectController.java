@@ -33,7 +33,7 @@ public class CatObjectController {
         Cat catInstance = catRepositories.findById(cat).get();
         CatObjects catObject = new CatObjects(objectInstance, catInstance);
         catObjectRepositories.save(catObject);
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

@@ -18,7 +18,7 @@ public class Deny {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long idDeny;
     @Column(name = "idPropositionMsg")
-    String idPropositionMsg;
+    Integer idPropositionMsg;
     @Column(name = "reason")
     String reason;
 
@@ -26,7 +26,7 @@ public class Deny {
 
     }
 
-    public Deny(String idPropositionMsg, String reason) {
+    public Deny(Integer idPropositionMsg, String reason) {
         this.idPropositionMsg = idPropositionMsg;
         this.reason = reason;
     }

@@ -32,6 +32,6 @@ public class ObjectController {
         fileService.uploadFile(objectImage);
 
         objectRep.save(new Object(objectName, objectDetail, "\\sndFiles\\" + fileName));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }
