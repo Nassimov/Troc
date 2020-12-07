@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>
+      Nous avons détecté une anomalie dans la génération du fichier car il
+      dépasse la taille exigée qui est de 5ko , alors que votre fichier est de
+      taille : [[${fileSize}]] ko
+    </h1>
+    <br />
+    <br />
+    <a th:href="@{'/'}">Revenir à la page d'accueil</a>
+  </body>
+</html>

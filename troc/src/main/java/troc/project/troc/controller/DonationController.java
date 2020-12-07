@@ -22,7 +22,7 @@ public class DonationController {
     @RequestMapping(value = "/addDonation", method = RequestMethod.POST)
     public String addDonation(@RequestParam Long idPrevMsg, @RequestParam Long sndObjList, Model m) {
         donationRepositories.save(new Donation(idPrevMsg, sndRepositories.findById(sndObjList).get()));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

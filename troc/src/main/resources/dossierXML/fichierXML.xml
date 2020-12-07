@@ -10,71 +10,44 @@
 			</header>
 			<body>
 				<listMsg>
-					<message idMsg="M344">
+					<message idMsg="344">
 						<dateMsg>2000-11-13T12:34:55</dateMsg>
 						<validityDuration>P8Y</validityDuration>
-						<!-- <authRequest/> -->
-					 <!--	<auth>
-							<authRef>ggfgfgdsggs</authRef>
-							<authDate>2001-11-13T12:34:55</authDate>
-						</auth> -->
-						<!-- <deny>
-							<idPropositionMsg>23455</idPropositionMsg>
-							<reason> de mauvaise qualite</reason>
-						</deny> -->
-						<barter>
+						<cat>
+							<idCatRequestMsg>7788</idCatRequestMsg>
+							<catDate>2005-11-13T12:34:55</catDate>
+							<object idObject="123">
+								<objectName>gtgt</objectName>
+								<objectDetails>fefe</objectDetails>
+								<objectImage>szszs</objectImage>
+							</object>
+						</cat>
+					</message>
+					<message idMsg="3399">
+						<dateMsg>2020-11-13T12:34:58</dateMsg>
+						<validityDuration>UUUBB</validityDuration>
+						 <barter>
 							<rcvObjectList>
-								<object idObject="0987">
-									<objectName>montre</objectName>
-									<objectDetails> une montre en or</objectDetails>
-									<objectImage>maronn</objectImage> 
+								<object idObject="0787">
+									<objectName>montre2</objectName>
+									<objectDetails> une montre 2</objectDetails>
+									<objectImage>maronn2</objectImage> 
+								</object>
+								<object idObject="5567">
+									<objectName>test2</objectName>
+									<objectDetails> testname2</objectDetails>
+									<objectImage>testimage2</objectImage> 
 								</object>
 							</rcvObjectList>
 							<sndObjectList>
 									<object idObject="0654">
-										<objectName>mocassin</objectName>
-										<objectDetails> de londre </objectDetails>
-										<objectImage>bleu</objectImage> 
+										<objectName>mocassin2</objectName>
+										<objectDetails> de londre 2 </objectDetails>
+										<objectImage>bleu 2</objectImage> 
 									</object>
 							</sndObjectList>
-							<idPrevMsg></idPrevMsg>
-						</barter>
-
-						<!-- <request>
-							<rcvObjectList>
-								<object idObject="0653">
-										<objectName>chemise</objectName>
-										<objectDetails> de paris </objectDetails>
-										<objectImage>verte</objectImage> 
-									</object>
-							</rcvObjectList>
-							<idPrevMsg>1</idPrevMsg>
-						</request>
-						<donation>
-							<sndObjectList>
-								<object idObject="0652">
-										<objectName>mocassin</objectName>
-										<objectDetails> de londre </objectDetails>
-										<objectImage>bleu</objectImage> 
-									</object>
-							</sndObjectList>
-							<idPrevMsg></idPrevMsg>
-						</donation>
-						<catRequest/>
-						<cat>
-							<idCatRequestMsg></idCatRequestMsg>
-							<catDate>2005-11-13T12:34:55</catDate>
-							<object idObject="123">
-								<objectName></objectName>
-								<objectDetails></objectDetails>
-								<objectImage></objectImage>
-							</object>
-						</cat>
-						<noCat>
-							<idCatRequestMsg>5677</idCatRequestMsg>
-							<reason>pas interesser</reason>
-						</noCat>
-						<errorMsg idMsg="987" idError="543"></errorMsg> -->
+							<idPrevMsg>1425</idPrevMsg>
+						</barter> 
 					</message>
 				</listMsg>
 			</body>

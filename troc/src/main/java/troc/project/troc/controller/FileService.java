@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileService {
 
-    public String uploadDir = "\\M1 DSC\\Document\\TrocProject\\Troc\\troc\\src\\main\\resources\\files\\sndFiles\\objectsImages";
+    public String uploadDir = System.getProperty("user.dir")+"/src/main/resources/files/sndFiles/objectsImages";
 
     public void uploadFile(MultipartFile file) {
 

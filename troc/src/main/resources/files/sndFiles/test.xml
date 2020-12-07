@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./final.xsd">
+    <header idF="159">
+        <nbMsg>1</nbMsg>
+        <transmitter idUser="28">Projet 1</transmitter>
+        <receiver idUser="29">Projet 2</receiver>
+        <authRef>authRef41</authRef>
+        <authDate>2020-05-23 03:10:25.967</authDate>
+    </header>
+    <body>
+        <listMsg>
+            <message idMsg="156">
+                <dateMsg>2021-01-16 22:00:00.0</dateMsg>
+                <validityDuration>null</validityDuration>
+                <cat>
+                    <idCatRequestMsg>117</idCatRequestMsg>
+                    <catDate>2020-02-12 03:22:06.413</catDate>
+                    <object idObject="57">
+                        <objectName>Object_6</objectName>
+                        <objectDetails>Obejct_Detail_6</objectDetails>
+                        <objectImage>Object_Image_6</objectImage>
+                    </object>
+                    <object idObject="57">
+                        <objectName>Object_6</objectName>
+                        <objectDetails>Obejct_Detail_6</objectDetails>
+                        <objectImage>Object_Image_6</objectImage>
+                    </object>
+                    <object idObject="58">
+                        <objectName>Object_7</objectName>
+                        <objectDetails>Obejct_Detail_7</objectDetails>
+                        <objectImage>Object_Image_7</objectImage>
+                    </object>
+                    <object idObject="56">
+                        <objectName>Object_5</objectName>
+                        <objectDetails>Obejct_Detail_5</objectDetails>
+                        <objectImage>Object_Image_5</objectImage>
+                    </object>
+                </cat>
+            </message>
+        </listMsg>
+    </body>
+</file>

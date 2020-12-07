@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./final.xsd">
+    <header idF="159">
+        <nbMsg>2</nbMsg>
+        <transmitter idUser="28">Projet 1</transmitter>
+        <receiver idUser="31">Projet 4</receiver>
+        <authRef>authRef61</authRef>
+        <authDate>2020-02-08 17:15:56.387</authDate>
+    </header>
+    <body>
+        <listMsg>
+            <message idMsg="151">
+                <dateMsg>2020-10-29 12:34:18.203</dateMsg>
+                <validityDuration>7420068057806542821</validityDuration>
+                <cat>
+                    <idCatRequestMsg>115</idCatRequestMsg>
+                    <catDate>2020-07-01 05:13:31.018</catDate>
+                </cat>
+            </message>
+            <message idMsg="153">
+                <dateMsg>2020-10-22 20:56:29.203</dateMsg>
+                <validityDuration>8713070960862909934</validityDuration>
+                <authRequest>6146932907528604479</authRequest>
+                <auth>
+                    <authRef>authRef51</authRef>
+                    <authDate>2020-06-14 01:58:01.384</authDate>
+                </auth>
+                <barter>
+                    <rcvObjectList>
+                        <object idObject="59">
+                            <objectName>Object_8</objectName>
+                            <objectDetails>Obejct_Detail_8</objectDetails>
+                            <objectImage>Object_Image_8</objectImage>
+                        </object>
+                    </rcvObjectList>
+                    <sndObjectList>
+                        <object idObject="60">
+                            <objectName>Object_9</objectName>
+                            <objectDetails>Obejct_Detail_9</objectDetails>
+                            <objectImage>Object_Image_9</objectImage>
+                        </object>
+                        <object idObject="55">
+                            <objectName>Object_4</objectName>
+                            <objectDetails>Obejct_Detail_4</objectDetails>
+                            <objectImage>Object_Image_4</objectImage>
+                        </object>
+                    </sndObjectList>
+                    <!-- <idPrevMsg></idPrevMsg> -->
+                </barter>
+                    </message>
+                    </listMsg>
+                    </body>
+                    </file>

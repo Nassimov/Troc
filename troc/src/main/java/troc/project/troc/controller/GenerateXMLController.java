@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 import java.util.List;
@@ -35,6 +34,10 @@ import troc.project.troc.repositories.ListMsgRepository;
 import troc.project.troc.repositories.MessageRepository;
 import troc.project.troc.repositories.ObjectRCVListRepository;
 import troc.project.troc.repositories.ObjectSNDListRepository;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class GenerateXMLController {
@@ -50,7 +53,7 @@ public class GenerateXMLController {
         ObjectSNDListRepository objectSNDListRepository;
 
         @RequestMapping(value = "/generateXML", method = RequestMethod.GET)
-        public String generateXML() {
+        public String generateXML(Model m) {
                 FileTroc lastFIle = fileTrocRepository.findTopByOrderByIdFileTrocDesc();
                 lastFIle.setIdf(lastFIle.getIdFileTroc());
                 fileTrocRepository.save(lastFIle);
@@ -393,15 +396,33 @@ public class GenerateXMLController {
                         TransformerFactory transformerFactory = TransformerFactory.newInstance();
                         Transformer transformer = transformerFactory.newTransformer();
                         DOMSource domSource = new DOMSource(document);
-                        StreamResult streamResult = new StreamResult(new File(
-                                        "D:\\M1 DSC\\Document\\TrocProject\\Troc\\troc\\src\\main\\resources\\files\\sndFiles\\De "
-                                                        + lastFIle.getHeader().getTransmitter().getName() + "  "
-                                                        + lastFIle.getHeader().getTransmitter().getLastName() + " Vers "
-                                                        + lastFIle.getHeader().getReceiver().getName() + " "
-                                                        + lastFIle.getHeader().getReceiver().getLastName() + ".xml"));
+                        String fileApplicationServerPath = "/home/ramez/M1/DN/Troc/troc/src/main/resources/files/sndFiles/De"
+                                        + lastFIle.getHeader().getTransmitter().getName() + "  "
+                                        + lastFIle.getHeader().getTransmitter().getLastName() + " Vers "
+                                        + lastFIle.getHeader().getReceiver().getName() + " "
+                                        + lastFIle.getHeader().getReceiver().getLastName() + ".xml";
+                        StreamResult streamResult = new StreamResult(new File(fileApplicationServerPath));
 
                         transformer.transform(domSource, streamResult);
+                        Path path = Paths.get(fileApplicationServerPath);
 
+                        try {
+
+                                // size of a file (in bytes)
+                                long fileSizeInBytes = Files.size(path);
+                                if (fileSizeInBytes > 5120) {
+                                        // Delete generated file and dete last file
+                                        fileTrocRepository.delete(lastFIle);
+                                        Files.delete(path);
+
+                                        m.addAttribute("fileSize", fileSizeInBytes / 1024);
+
+                                        return "warning";
+                                }
+
+                        } catch (IOException e) {
+                                e.printStackTrace();
+                        }
                 } catch (
 
                 ParserConfigurationException pce) {
@@ -410,7 +431,9 @@ public class GenerateXMLController {
                         tfe.printStackTrace();
                 }
 
-                return "redirect:/";
+                // gérer la taille du fichier:
+
+                return "successGeneration";
         }
 
 }

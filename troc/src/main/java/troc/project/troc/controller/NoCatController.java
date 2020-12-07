@@ -19,6 +19,6 @@ public class NoCatController {
     @RequestMapping(value = "/addNoCat", method = RequestMethod.POST)
     public String addNoCat(@RequestParam String reason, @RequestParam Long idCatRequestMsg, Model m) {
         noCatRepository.save(new NoCat(idCatRequestMsg, reason));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }

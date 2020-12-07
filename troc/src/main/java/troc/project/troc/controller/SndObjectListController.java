@@ -1,7 +1,5 @@
 package troc.project.troc.controller;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -22,6 +20,6 @@ public class SndObjectListController {
 
         sndObjectListRepository.save(new SndObjectList());
 
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }
