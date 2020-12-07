@@ -17,7 +17,7 @@ public class ErrorMessageController {
     @RequestMapping(value = "/addErrorMessage", method = RequestMethod.POST)
     public String addErrorMessage() {
         errorMessageRepository.save(new ErrorMessage());
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

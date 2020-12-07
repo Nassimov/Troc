@@ -19,7 +19,7 @@ public class AcceptController {
     @RequestMapping(value = "/addAccept", method = RequestMethod.POST)
     public String addAccept(@RequestParam Long idPropositionMsg, Model m) {
         acceptRepository.save(new Accept(idPropositionMsg));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

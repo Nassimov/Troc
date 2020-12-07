@@ -31,7 +31,7 @@ public class AuthController {
         int m1 = Integer.parseInt(authTime.split(":")[1]);
         Date newDate = new Date(goodYear, month, date, h1, m1);
         authRepositories.save(new Auth(newDate, authRef));
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 
 }

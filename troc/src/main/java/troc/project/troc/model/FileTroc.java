@@ -24,6 +24,8 @@ public class FileTroc {
     Header header;
     @OneToOne
     MsgList msgList;
+    @Column(name = "idf")
+    Long idf;
 
     public FileTroc() {
 

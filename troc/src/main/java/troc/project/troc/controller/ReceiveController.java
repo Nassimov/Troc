@@ -364,7 +364,7 @@ public class ReceiveController {
 
         try {
             if (idff == -9999999) 
-                idff = lireHeader("xml4.xml");
+                idff = lireHeader("test.xml");
             
             lb = bdd.findAllByIdF(idff);
 
@@ -594,7 +594,7 @@ public class ReceiveController {
 
             
 
-            m.addAttribute("listeNbrsMsg", ParserXML.nbMsgReel("xml4.xml"));
+            m.addAttribute("listeNbrsMsg", ParserXML.nbMsgReel("test.xml"));
             //System.err.println("Barter id : "+ParserXML.SavoirIdMsg("fichierXML.xml", "barter"));
             //System.err.println("Req id : "+ParserXML.SavoirIdMsg("fichierXML.xml", "request"));
             //System.err.println("list : "+ParserXML.recupCatDateETreqMsg("fichierXML.xml"));

@@ -31,6 +31,6 @@ public class ObjectRCVListController {
         Object objobj = objectRepository.findById(obj).get();
         objectRCVListRepository.save(new ObjectRCVList(objobj, rcvsnd));
 
-        return "redirect:/";
+        return "redirect:/firstStep";
     }
 }

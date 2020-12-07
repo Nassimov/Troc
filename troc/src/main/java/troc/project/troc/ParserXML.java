@@ -40,7 +40,7 @@ public class ParserXML {
         public static Element builder(String fichier) {
             try {
                 DocumentBuilder builder = racineFichier().newDocumentBuilder();
-                final Document document = builder.parse(new File(System.getProperty("user.dir")+"/src/main/resources/dossierXML/" + fichier));
+                final Document document = builder.parse(new File("/home/ramez/M1/DN/Troc/troc/src/main/resources/files/sndFiles/" + fichier));
                 Element enteteFichier = document.getDocumentElement();
                 return enteteFichier;
             }catch(ParserConfigurationException | IOException | SAXException e) {
