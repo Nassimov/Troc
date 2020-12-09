@@ -11,6 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
+
 @Table(name = "Accept")
 public class Accept {
     @Id

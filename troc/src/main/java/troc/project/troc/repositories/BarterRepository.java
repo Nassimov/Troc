@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import troc.project.troc.model.Barter;
 
 public interface BarterRepository extends CrudRepository<Barter, Long> {
-
+    public Barter findByIdPrevMsg(long idPrevMsg);
 }
