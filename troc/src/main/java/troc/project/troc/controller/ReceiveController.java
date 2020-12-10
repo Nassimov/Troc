@@ -544,6 +544,7 @@ public class ReceiveController {
             t.setObjDetailsReqRcv(null);
             t.setObjImageReqRcv(null);
         } else {
+            System.err.println("heeeerreeeee  "+ParserXML.listObjRcvReq(fileName));
             for (int i = 0; i < ParserXML.listObjRcvReq(fileName).size(); i += 5) {
                 TrocBdd t2 = new TrocBdd();
                 t2.setIdObjReq((String) ParserXML.listObjRcvReq(fileName).get(i));
@@ -553,6 +554,8 @@ public class ReceiveController {
                 t2.setIdF(t.getIdF());
                 t2.setIdMsg(Integer.parseInt(ParserXML.listObjRcvReq(fileName).get(i + 4)));
                 bdd.save(t2);
+
+                System.err.println("objet  " + ParserXML.listObjRcvReq(fileName).get(i + 1));
 
                 Long idMsg2 = Long.valueOf(t2.getIdMsg());
                 Long idPrevMsg = Long.valueOf(t2.getIdPrevMsg());
@@ -734,7 +737,7 @@ public class ReceiveController {
                     listeObjReq.add(lb.get(i).getObjDetailsReqRcv());
                     listeObjReq.add(lb.get(i).getObjImageReqRcv());
                     hmObjReq.put(listeObjReq, lb.get(i).getIdMsg());
-                    System.err.println(hmObjReq);
+                    //System.err.println("yaaaaaaaaaaa "+hmObjReq);
                 }
                 if (lb.get(i).getIdObjDonnSend() != null) {
                     List<String> listeObjDonn = new ArrayList<>();
@@ -836,6 +839,10 @@ public class ReceiveController {
                 m.addAttribute("listeRcvBarter", hmRcvBart);
             if (hmSndBart.size() != 0)
                 m.addAttribute("listeSndBarter", hmSndBart);
+            if (hmRcvBart.size() != 0)
+                m.addAttribute("listeRcvReq", hmObjReq);
+            if (hmRcvBart.size() != 0)
+                m.addAttribute("listeObjDonn", hmObjDonn);
             if (hmPrevMsg.size() != 0)
                 m.addAttribute("idPrevMsg", hmPrevMsg);
             if (hmCatDateETreqMsg.size() != 0)

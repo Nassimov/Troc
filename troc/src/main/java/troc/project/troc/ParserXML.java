@@ -673,9 +673,7 @@ public class ParserXML {
 
         Element rootFichier = builder(fichier); // la racine du fichier
         Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0);
-        NodeList myOfNodes1 = myElt.getElementsByTagName("rcvObjectList");
-        NodeList myOfNodes2 = myElt.getElementsByTagName("barter");
-        if (myOfNodes1.item(0).getParentNode().getNodeName() == "barter") {
+        NodeList myOfNodes1 = myElt.getElementsByTagName("barter");
             for (int i = 0; i < myOfNodes1.getLength(); i++) {
                 Element newElt1 = (Element) myOfNodes1.item(i);
                 int nbObj = newElt1.getElementsByTagName("object").getLength();
@@ -685,7 +683,7 @@ public class ParserXML {
                     objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
                     obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
                     obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
-                    idMsg = myOfNodes2.item(i).getParentNode().getAttributes().item(0).getTextContent();
+                    idMsg = myOfNodes1.item(i).getParentNode().getAttributes().item(0).getTextContent();
                     myListeMsg.add(attribObject);
                     myListeMsg.add(objectName);
                     myListeMsg.add(obejectDetails);
@@ -694,8 +692,6 @@ public class ParserXML {
                 }
             }
             return myListeMsg;
-        } else
-            return null;
 
     }
 
@@ -751,9 +747,8 @@ public class ParserXML {
         Element rootFichier = builder(fichier); // la racine du fichier
 
         Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0);
-        NodeList myOfNodes1 = myElt.getElementsByTagName("sndObjectList");
-        NodeList myOfNodes2 = myElt.getElementsByTagName("donation");
-        if (myOfNodes1.item(0).getParentNode().getNodeName() == "donation") {
+        NodeList myOfNodes1 = myElt.getElementsByTagName("donation");
+       
             for (int i = 0; i < myOfNodes1.getLength(); i++) {
                 Element newElt1 = (Element) myOfNodes1.item(i);
                 int nbObj = newElt1.getElementsByTagName("object").getLength();
@@ -764,7 +759,7 @@ public class ParserXML {
                     objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
                     obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
                     obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
-                    idMsg = myOfNodes2.item(i).getParentNode().getAttributes().item(0).getTextContent();
+                    idMsg = myOfNodes1.item(i).getParentNode().getAttributes().item(0).getTextContent();
                     // ajout des valeurs dans la liste
                     myListeMsg.add(attribObject);
                     myListeMsg.add(objectName);
@@ -775,8 +770,6 @@ public class ParserXML {
             }
 
             return myListeMsg;
-        } else
-            return null;
     }
 
     public static ArrayList<String> recupCatObject(String fichier) throws Exception {
@@ -827,11 +820,9 @@ public class ParserXML {
 
         Element rootFichier = builder(fichier); // la racine du fichier
         Element myElt = (Element) rootFichier.getElementsByTagName("listMsg").item(0);
-        NodeList myOfNodes1 = myElt.getElementsByTagName("rcvObjectList");
-        NodeList myOfNodes2 = myElt.getElementsByTagName("request");
-        // System.err.println("je suis laaaaaaaaaaa " +
-        // myOfNodes1.item(0).getParentNode().getNodeName());
-        if (myOfNodes1.item(0).getParentNode().getNodeName() == "request") {
+        NodeList myOfNodes1 = myElt.getElementsByTagName("request");
+        //System.err.println("je suis laaaaaaaaaaa " +myOfNodes1.item(0).getParentNode().getNodeName());
+        
             for (int i = 0; i < myOfNodes1.getLength(); i++) {
                 Element newElt1 = (Element) myOfNodes1.item(i);
                 int nbObj = newElt1.getElementsByTagName("object").getLength();
@@ -839,9 +830,10 @@ public class ParserXML {
                     attribObject = rootFichier.getElementsByTagName("object").item(j).getAttributes().item(0)
                             .getTextContent();
                     objectName = newElt1.getElementsByTagName("objectName").item(j).getTextContent();
+                    //System.err.println("je suis laaaaaaaaaaa " +objectName);
                     obejectDetails = newElt1.getElementsByTagName("objectDetails").item(j).getTextContent();
                     obejectImage = newElt1.getElementsByTagName("objectImage").item(j).getTextContent();
-                    idMsg = myOfNodes2.item(i).getParentNode().getAttributes().item(0).getTextContent();
+                    idMsg = myOfNodes1.item(i).getParentNode().getAttributes().item(0).getTextContent();
                     // ajout des valeurs dans la liste
                     myListeObject.add(attribObject);
                     myListeObject.add(objectName);
@@ -851,8 +843,6 @@ public class ParserXML {
                 }
             }
             return myListeObject;
-        } else
-            return null;
     }
 
     public static ArrayList<String> listObjRcvBarter(String fichier) throws Exception {

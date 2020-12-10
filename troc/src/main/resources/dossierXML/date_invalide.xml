@@ -1,0 +1,54 @@
+<?xml version ="1.0" encoding="UTF-8" standalone="no" ?>
+<!-- <!Doctype fichierXML SYSTEM "final.dtd">  -->
+	<file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./final.xsd">
+			<header idF="2336">
+				<nbMsg>1233</nbMsg>
+				<transmitter idUser="123">yasser</transmitter>
+				<receiver idUser="876">Mandela</receiver>
+				<authRef>Bachar</authRef>
+				<authDate>2020-12-12T00:00:00</authDate>
+			</header>
+			<body>
+				<listMsg>
+					<message idMsg="344">
+						<dateMsg>2000-11-13T12:34:55</dateMsg>
+						<validityDuration>P8Y</validityDuration>
+						<cat>
+							<idCatRequestMsg>7788</idCatRequestMsg>
+							<catDate>2005-11-13T12:34:55</catDate>
+							<object idObject="123">
+								<objectName>gtgt</objectName>
+								<objectDetails>fefe</objectDetails>
+								<objectImage>szszs</objectImage>
+							</object>
+						</cat>
+					</message>
+					<message idMsg="3399">
+						<dateMsg>2020-11-13T12:34:58</dateMsg>
+						<validityDuration>UUUBB</validityDuration>
+						 <barter>
+							<rcvObjectList>
+								<object idObject="0787">
+									<objectName>montre2</objectName>
+									<objectDetails> une montre 2</objectDetails>
+									<objectImage>maronn2</objectImage> 
+								</object>
+								<object idObject="5567">
+									<objectName>test2</objectName>
+									<objectDetails> testname2</objectDetails>
+									<objectImage>testimage2</objectImage> 
+								</object>
+							</rcvObjectList>
+							<sndObjectList>
+									<object idObject="0654">
+										<objectName>mocassin2</objectName>
+										<objectDetails> de londre 2 </objectDetails>
+										<objectImage>bleu 2</objectImage> 
+									</object>
+							</sndObjectList>
+							<idPrevMsg>1425</idPrevMsg>
+						</barter> 
+					</message>
+				</listMsg>
+			</body>
+	</file>

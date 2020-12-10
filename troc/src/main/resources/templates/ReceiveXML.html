@@ -157,11 +157,11 @@
       </ul>
 
       <!-- Request -->
-      <ul th:each="item : ${listeObjReq}">
-        <p class="head" th:if="${listeObjReq} AND ${item.value} == ${items}">Request recceived objects</p>
-        <ul th:each="iteme : ${item.key}">
-          <span th:if="${item.value} == ${items}">
-            <li>[[${iteme}]]</li>
+      <ul th:each="itemq : ${listeRcvReq}">
+        <p class="head" th:if="${listeRcvReq} AND ${itemq.value} == ${items}">Request recceived objects</p>
+        <ul th:each="itemeq : ${itemq.key}">
+          <span th:if="${itemq.value} == ${items}">
+            <li>[[${itemeq}]]</li>
           </span>
         </ul>
       </ul>
