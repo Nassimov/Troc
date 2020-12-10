@@ -1,15 +1,11 @@
 package troc.project.troc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import troc.project.troc.model.Accept;
@@ -20,9 +16,6 @@ import troc.project.troc.model.CatObjects;
 import troc.project.troc.model.Deny;
 import troc.project.troc.model.Donation;
 import troc.project.troc.model.ErrorMessage;
-import troc.project.troc.model.FileTroc;
-import troc.project.troc.model.Header;
-import troc.project.troc.model.ListMsg;
 import troc.project.troc.model.Message;
 import troc.project.troc.model.MsgList;
 import troc.project.troc.model.NoCat;
@@ -41,9 +34,6 @@ import troc.project.troc.repositories.CatRepository;
 import troc.project.troc.repositories.DenyRepository;
 import troc.project.troc.repositories.DonationRepository;
 import troc.project.troc.repositories.ErrorMessageRepository;
-import troc.project.troc.repositories.FileTrocRepository;
-import troc.project.troc.repositories.HeaderRepository;
-import troc.project.troc.repositories.ListMsgRepository;
 import troc.project.troc.repositories.MessageRepository;
 import troc.project.troc.repositories.MsgListRepository;
 import troc.project.troc.repositories.NoCatRepository;
@@ -80,8 +70,6 @@ public class AddTestData {
     @Autowired
     private MsgListRepository msgListRepository;
     @Autowired
-    private HeaderRepository headerRepository;
-    @Autowired
     private ErrorMessageRepository errorMessageRepository;
     @Autowired
     private BarterRepository barterRepository;
@@ -95,15 +83,15 @@ public class AddTestData {
     private DonationRepository donationRepository;
     @Autowired
     private MessageRepository messageRepository;
-    @Autowired
-    private ListMsgRepository listMsgRepository;
 
     interface RandomElement {
         <T> T gen(List<T> l);
     }
 
     public void generateTestData() {
-
+        if ((int) messageRepository.count() != 0) {
+            return;
+        }
         Random r = new Random();
         RandomElement re = new RandomElement() {
             @Override

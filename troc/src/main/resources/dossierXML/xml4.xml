@@ -11,20 +11,35 @@
         <listMsg>
             <message idMsg="151">
                 <dateMsg>2020-10-29 12:34:18.203</dateMsg>
-                <validityDuration>7420068057806542821</validityDuration>
-                <cat>
-                    <idCatRequestMsg>115</idCatRequestMsg>
-                    <catDate>2020-07-01 05:13:31.018</catDate>
+                <validityDuration>2</validityDuration>
+                 <cat>
+                    <idCatRequestMsg>117</idCatRequestMsg>
+                    <catDate>2020-02-12 03:22:06.413</catDate>
+                    <object idObject="57">
+                        <objectName>Object_6</objectName>
+                        <objectDetails>Obejct_Detail_6</objectDetails>
+                        <objectImage>Object_Image_6</objectImage>
+                    </object>
+                    <object idObject="57">
+                        <objectName>Object_6</objectName>
+                        <objectDetails>Obejct_Detail_6</objectDetails>
+                        <objectImage>Object_Image_6</objectImage>
+                    </object>
+                    <object idObject="58">
+                        <objectName>Object_7</objectName>
+                        <objectDetails>Obejct_Detail_7</objectDetails>
+                        <objectImage>Object_Image_7</objectImage>
+                    </object>
+                    <object idObject="56">
+                        <objectName>Object_5</objectName>
+                        <objectDetails>Obejct_Detail_5</objectDetails>
+                        <objectImage>Object_Image_5</objectImage>
+                    </object>
                 </cat>
             </message>
             <message idMsg="153">
                 <dateMsg>2020-10-22 20:56:29.203</dateMsg>
-                <validityDuration>8713070960862909934</validityDuration>
-                <authRequest>6146932907528604479</authRequest>
-                <auth>
-                    <authRef>authRef51</authRef>
-                    <authDate>2020-06-14 01:58:01.384</authDate>
-                </auth>
+                <validityDuration>1</validityDuration>
                 <barter>
                     <rcvObjectList>
                         <object idObject="59">
@@ -45,7 +60,7 @@
                             <objectImage>Object_Image_4</objectImage>
                         </object>
                     </sndObjectList>
-                    <!-- <idPrevMsg></idPrevMsg> -->
+                    <idPrevMsg>1515</idPrevMsg>
                 </barter>
                     </message>
                     </listMsg>

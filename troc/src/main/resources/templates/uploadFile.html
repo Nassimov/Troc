@@ -146,36 +146,26 @@
             padding: 0 10px;
         }
     </style>
-    <script>
-        $('#chooseFile').bind('change', function () {
-            var filename = $("#chooseFile").val();
-            if (/^\s*$/.test(filename)) {
-                $(".file-upload").removeClass('active');
-                $("#noFile").text("No file chosen...");
-            }
-            else {
-                $(".file-upload").addClass('active');
-                $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
-            }
-        });
-
-    </script>
+    
 </head>
 
 <body>
 
-    <div th:if = "${catchException}">
-        <h1 style="color: RED;">[[${catchException}]]</h1> 
+    <div th:if = "${catchException} AND !${catchExceptions}">
+        <h2 style="color: RED;">[[${catchException}]]</h2> 
+    </div>
+    <div th:if = "${catchExceptions}">
+        <h2 style="color: RED;">[[${catchExceptions}]]</h2> 
     </div>
 
     <h1>Please Insert Your Valid XML File</h1>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
     <form data-th-action="@{uploadXML}" method="post" enctype="multipart/form-data">
-        <input type="file" name="chooseFile" id="chooseFile" accept="text/xml" required>
+        <input type="file" name="chooseFile" id="chooseFile" accept="text/xml" required />
 
         <br>
-        <div style="marge :50%;">
+        <div>
             <br>
             <input type="submit" value="Upload Now" />
             <br>

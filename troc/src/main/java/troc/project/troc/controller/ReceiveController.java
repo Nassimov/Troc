@@ -41,6 +41,7 @@ public class ReceiveController {
     static final int ERROR_FILE_UN_EXPECTED_SIZE = -6666666;
     static final int ERROR_NB_MSG_UNMATCHED = -5555555;
     static final int ERROR_UNVALID_DURATION = -4444444;
+    String globFileName;
 
     @Inject
     TrocBddRepository bdd;
@@ -112,8 +113,8 @@ public class ReceiveController {
     UserTroc userTroc = new UserTroc();
 
     TrocBdd t = new TrocBdd();
-    int idff = -9999999;
-    int idMsg = -9999999;
+    int idff = FILE_ALREADY_READIT;
+    int idMsg = FILE_ALREADY_READIT;
     String globalFileName;
     String sDate3;
 
@@ -435,13 +436,13 @@ public class ReceiveController {
 
                 sDate3 = ParserXML.ListCatReqMsgETdate(fileName).get(i + 2);
 
-                /*
-                 * System.err.println("sdate 3 = " + sDate3); Date datCat =
-                 * format.parse(sDate3); Long idMsg2 = Long.valueOf(t2.getIdMsg());
-                 * message.setIdMsg(idMsg2); message = messageRepository.findByIdMsg(idMsg2);
-                 * cat = new Cat(datCat); catRepository.save(cat); message.setCat(cat);
-                 * messageRepository.save(message);
-                 */
+                
+                System.err.println("sdate 3 = " + sDate3); Date datCat =
+                format.parse(sDate3); Long idMsg2 = Long.valueOf(t2.getIdMsg());
+                message.setIdMsg(idMsg2); message = messageRepository.findByIdMsg(idMsg2);
+                cat = new Cat(datCat); catRepository.save(cat); message.setCat(cat);
+                messageRepository.save(message);
+                 
             }
         }
         if (ParserXML.ListNoCat(fileName) == null) {
@@ -501,15 +502,17 @@ public class ReceiveController {
                 message = new Message();
                 message.setIdMsg(idMsg2);
                 message = messageRepository.findByIdMsg(idMsg2);
-                accept = new Accept();
+                accept = acceptRepository.findByIdPropositionMsg(idMsg2);
+                if(accept == null){
+                    accept = new Accept(idMsg2);
+                }
                 acceptRepository.save(accept);
                 message.setAccept(accept);
                 barter = new Barter();
-                barter.setIdPrevMsg(idPrevMsg);
+                barter.setIdPrevMsg(idMsg2);
                 barterRepository.save(barter);
                 message.setBarter(barter);
                 messageRepository.save(message);
-
             }
         }
 
@@ -556,11 +559,14 @@ public class ReceiveController {
                 message = new Message();
                 message.setIdMsg(idMsg2);
                 message = messageRepository.findByIdMsg(idMsg2);
-                accept = new Accept();
+                accept = acceptRepository.findByIdPropositionMsg(idMsg2);
+                if(accept == null){
+                    accept = new Accept(idMsg2);
+                }
                 acceptRepository.save(accept);
                 message.setAccept(accept);
                 request = new Request();
-                request.setIdPrevMsg(idPrevMsg);
+                request.setIdPrevMsg(idMsg2);
                 requestRepository.save(request);
                 message.setRequest(request);
                 messageRepository.save(message);
@@ -591,11 +597,14 @@ public class ReceiveController {
                 message = new Message();
                 message.setIdMsg(idMsg2);
                 message = messageRepository.findByIdMsg(idMsg2);
-                accept = new Accept();
+                accept = acceptRepository.findByIdPropositionMsg(idMsg2);
+                if(accept == null){
+                    accept = new Accept(idMsg2);
+                }
                 acceptRepository.save(accept);
                 message.setAccept(accept);
                 donation = new Donation();
-                donation.setIdPrevMsg(idPrevMsg);
+                donation.setIdPrevMsg(idMsg2);
                 donationRepository.save(donation);
                 message.setDonation(donation);
                 messageRepository.save(message);
@@ -626,12 +635,21 @@ public class ReceiveController {
                 message = new Message();
                 message.setIdMsg(idMsg2);
                 message = messageRepository.findByIdMsg(idMsg2);
-                accept = new Accept();
+                accept = acceptRepository.findByIdPropositionMsg(idMsg2);
+                if(accept == null){
+                    accept = new Accept(idMsg2);
+                }
                 acceptRepository.save(accept);
                 message.setAccept(accept);
                 System.err.println("catDate  is " + catDate);
-                cat = new Cat();
+                cat.setCatDate(catDate);
+                cat = catRepository.findByCatDate(catDate);
+                if(cat == null){
+                    cat = new Cat(catDate);
+                }
+                //cat = new Cat();
                 catRepository.save(cat);
+                
                 message.setCat(cat);
                 messageRepository.save(message);
 
@@ -671,26 +689,16 @@ public class ReceiveController {
         HashMap<List<String>, Integer> hmErr = new HashMap<>();
 
         try {
-            if (idff == FILE_ALREADY_READIT) {
+            if (idff == FILE_ALREADY_READIT)
                 idff = lireHeader(myFileXmlName);
-            }
-            if (idff == ERROR_FILE_UN_EXPECTED_SIZE) {
-                m.addAttribute("catchException", "File is greater than 5 kb");
-                return "redirect:/uploadFile";
-            }
-            if (idff == ERROR_NB_MSG_UNMATCHED) {
-                m.addAttribute("catchException", "Number message unmatched");
-                return "redirect:/uploadFile";
-            }
-            if (idff == ERROR_DATE_HAS_EXPIRED) {
-                m.addAttribute("catchException", "ERROR : DATE has Been Expierd!");
-                return "redirect:/uploadFile";
-
-            }
-            if (idff == ERROR_UNVALID_DURATION) {
-                m.addAttribute("catchException", "Pleas Check ur Duration Message, Must Be Long type");
-                return "redirect:/uploadFile";
-            }
+            if (idff == ERROR_FILE_UN_EXPECTED_SIZE)
+                m.addAttribute("catchExceptions", "File is greater than 5 kb");
+            if (idff == ERROR_NB_MSG_UNMATCHED)
+                m.addAttribute("catchExceptions", "Number message unmatched");
+            if (idff == ERROR_DATE_HAS_EXPIRED)
+                m.addAttribute("catchExceptions", "ERROR : DATE has Been Expierd!");
+            if (idff == ERROR_UNVALID_DURATION)
+                m.addAttribute("catchExceptions", "Pleas Check ur Duration Message, Must Be Long type");
 
             lb = bdd.findAllByIdF(idff);
 
@@ -900,7 +908,7 @@ public class ReceiveController {
 
         } catch (Exception e) {
             System.err.println("Error in xml file \n" + e);
-            m.addAttribute("catchException", " ERROR in xml file syntaxe \n code: \n" + e);
+            m.addAttribute("catchException", " Syntaxe ERROR in xml file \n code: \n" + e);
             return "/uploadFile";
 
         }
@@ -921,7 +929,7 @@ public class ReceiveController {
             System.err.println("raison " + answerMessage);
 
             deny = new Deny();
-            if (idff != -9999999) {
+            if (idff != FILE_ALREADY_READIT) {
                 message = messageRepository.findByIdMsg(Long.valueOf(idMsg));
                 if (message != null) {
                     System.err.println("message is not null  idMsg = " + idMsg);
@@ -934,8 +942,12 @@ public class ReceiveController {
                         deny.setReason(answerMessage);
                         denyRepository.save(deny);
                     }
+                    message.setAccept(null);
+                    accept = acceptRepository.findByIdPropositionMsg((long) idMsg);
+                    
                     message.setDeny(deny);
                     messageRepository.save(message);
+                    acceptRepository.delete(accept);
                     listMsg = new ListMsg(message, msgList);
                     listMsgRepository.save(listMsg);
                 } else {
@@ -958,9 +970,9 @@ public class ReceiveController {
 
         String fileName = StringUtils.cleanPath(chooseFile.getOriginalFilename());
         /** Pour Windows Utilisateur */
-        String myPath = "\\src\\main\\resources\\dossierXML\\";
+        //String myPath = "\\src\\main\\resources\\dossierXML\\";
         /** Pour linux Utilisateur */
-        // String myPath = "/src/main/resources/dossierXML";
+        String myPath = "/src/main/resources/dossierXML/";
 
         System.err.println("directory is : " + System.getProperty("user.dir") + myPath + "\n");
         String uploadDir = System.getProperty("user.dir") + myPath;
@@ -972,7 +984,8 @@ public class ReceiveController {
             e.printStackTrace();
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!");
         }
-
+        globFileName = fileName;
+        
         System.err.println("file uplad named " + fileName);
         return "redirect:/ReceiveXML?myFileXmlName=" + fileName;
 

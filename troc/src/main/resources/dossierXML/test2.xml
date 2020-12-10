@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./final.xsd">
     <header idF="159">
-        <nbMsg>1</nbMsg>
+        <nbMsg>2</nbMsg>
         <transmitter idUser="28">Projet 1</transmitter>
         <receiver idUser="29">Projet 2</receiver>
         <authRef>authRef41</authRef>

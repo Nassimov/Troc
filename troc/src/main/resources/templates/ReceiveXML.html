@@ -218,56 +218,55 @@
           </span>
         </ul>
       </ul>
-      <div>
-        <div class="form-group">
-          <form data-th-action="@{/accpetMessage}" method="post">
-
-            <h4>Do you Answer this Message ?</h4>
-            <script>
-              $(document).ready(function () {
-
-                $('input[type="radio"]').click(function () {
-                  if ($(this).attr("value") == "yes") {
-                    $(".Box").hide('slow');
-                  }
-                  if ($(this).attr("value") == "no") {
-                    $(".Box").show('slow');
-
-                  }
-                });
-
-                $('input[type="radio"]').trigger('click');  // trigger the event
-              });
-
-            </script>
-            <div class="form-check">
-              <label for="no"> Yes </label>
-              <input type="radio" name="answerQ" value="yes" id="Yes" class="form-check-input">
-              <label for="no"> No </label>
-              <input type="radio" name="answerQ" value="no" id="No" class="form-check-input">
-            </div>
-            <div class="Box" style="color:red; font-size:16px; font-weight:bold;">
-              <label id="idMsg">ID MSG [[ ${items}]] : </label>
-              <input type="hidden" class="form-control" name="idMsg" th:value="${items}" id="idMsg" readonly>
-              <label id="ifNoQ">Insert Raison for refuse</label>
-              <input type="text" class="form-control" name="answerMessage" placeholder="Raison X" id="ifNoQ">
-
-
-            </div>
-
-            <input type="submit" value="Submit" class="btn btn-primary" />
-
-          </form>
-          <br>
-        </div>
-      </div>
-
-
     </ul>
     <hr>
-
+    <div>
+      <div class="form-group">
+        <form data-th-action="@{/accpetMessage}" method="post" >
+  
+          <h4>Do you Answer this Message ?</h4>
+          <select name="idMsg" id="idMsg">
+            <option th:each="items : ${listeNbrsMsg}">[[${items}]]</option>
+          </select>
+          <script>
+            $(document).ready(function () {
+  
+              $('input[type="radio"]').click(function () {
+                if ($(this).attr("value") == "yes") {
+                  $(".Box").hide('slow');
+                }
+                if ($(this).attr("value") == "no") {
+                  $(".Box").show('slow');
+  
+                }
+              });
+  
+              $('input[type="radio"]').trigger('click');  // trigger the event
+            });
+  
+          </script>
+          <div class="form-check">
+            <label for="no"> Yes </label>
+            <input type="radio" name="answerQ" value="yes" id="Yes" class="form-check-input">
+            <label for="no"> No </label>
+            <input type="radio" name="answerQ" value="no" id="No" class="form-check-input">
+          </div>
+          <div class="Box" style="color:red; font-size:16px; font-weight:bold;">
+            <label id="idMsg">ID MSG [[ ${items}]] : </label>
+            <label id="ifNoQ">Insert Raison for refuse</label>
+            <input type="text" class="form-control" name="answerMessage" placeholder="Raison X" id="ifNoQ">
+  
+  
+          </div>
+  
+          <input type="submit" value="Submit" class="btn btn-primary" />
+  
+        </form>
+        <br>
+      </div>
+    </div>
   </div>
-
+  
 
 
   <div class="right"></div>

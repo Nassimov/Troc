@@ -37,8 +37,8 @@ public class ParserXML {
      * @return l'element buider
      */
     public static Element builder(String fichier) {
-        String myPath = "\\src\\main\\resources\\dossierXML\\";
-        // String myPath = "/src/main/resources/dossierXML";
+        //String myPath = "\\src\\main\\resources\\dossierXML\\";
+        String myPath = "/src/main/resources/dossierXML/";
 
         String fileLocation = System.getProperty("user.dir") + myPath;
 

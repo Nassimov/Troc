@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<file>
+    <header idF="179">
+        <nbMsg>2</nbMsg>
+        <transmitter idUser="160">Projet 1 There are no last name of transmitter :O</transmitter>
+        <receiver idUser="159">Projet 2 There are no last name of recever :O</receiver>
+        <authRef>authRef41</authRef>
+        <authDate>2020-05-23 03:10:25.0</authDate>
+    </header>
+    <body>
+        <listMsg>
+            <message idMsg="164">
+                <dateMsg>2021-01-16 22:00:00.0</dateMsg>
+                <validityDuration>null</validityDuration>
+                <deny>
+                    <idPropositionMsg>156</idPropositionMsg>
+                    <reason>je refuse</reason>
+                </deny>
+                <cat>
+                    <idCatRequestMsg>169</idCatRequestMsg>
+                    <catDate>2020-02-12 03:22:06.0</catDate>
+                </cat>
+            </message>
+            <message idMsg="164">
+                <dateMsg>2021-01-16 22:00:00.0</dateMsg>
+                <validityDuration>null</validityDuration>
+                <deny>
+                    <idPropositionMsg>156</idPropositionMsg>
+                    <reason>je refuse</reason>
+                </deny>
+                <cat>
+                    <idCatRequestMsg>169</idCatRequestMsg>
+                    <catDate>2020-02-12 03:22:06.0</catDate>
+                </cat>
+            </message>
+        </listMsg>
+    </body>
+</file>
