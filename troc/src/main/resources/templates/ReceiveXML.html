@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.thymeleaf.org ">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Recup Bdd</title>
+</head>
+<style>
+  * {
+    max-width: 700px;
+    margin: auto;
+  }
+
+
+  /*body {
+    min-width: 500px;
+}*/
+
+  div {
+    border-radius: 5px;
+  }
+
+  #header {
+    height: 40px;
+    width: 100%;
+    background-color: #ffcccc;
+    position: fixed;
+    z-index: 1;
+  }
+
+  #title {
+    margin-left: 3%;
+  }
+
+  #footer {
+    height: 50px;
+    width: 100%;
+    background-color: #ffcccc;
+    clear: both;
+    position: relative;
+  }
+
+  .left {
+    height: 1000px;
+    width: 45px;
+    background-color: #e0eeee;
+    float: left;
+    position: fixed;
+  }
+
+  .right {
+    height: 1000px;
+    width: 45px;
+    background-color: #e0eeee;
+    float: right;
+    position: inherit;
+  }
+
+  .stuff {
+    display: inline-block;
+    margin-top: 6px;
+    margin-left: 55px;
+    width: 75%;
+    height: 1000px;
+  }
+
+  p,
+  li {
+    font-family: 'Cormorant Garamond';
+  }
+
+  .head {
+    font-size: 20px;
+  }
+
+  #name {
+    font-family: Sacramento;
+    float: right;
+    margin-top: 10px;
+    margin-right: 4%;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  @media only screen and (max-width: 430px) {
+
+    .left,
+    .right {
+      display: none;
+    }
+
+    .stuff {
+      width: 100%;
+      margin-left: 10px;
+    }
+  }
+</style>
+
+<body>
+  <div id="header"></div>
+  <div class="left"></div>
+  <div class="stuff">
+    <br><br>
+    <h1>Fichier recu</h1>
+    <h2>transmitter [[${transmitter}]] : id [[${idUserTrans}]]</h2>
+    <hr />
+    <br>
+    <p>receiver [[${receiver}]] : id [[${idUserRec}]]</p>
+    <p th:if="${authRef}"> authRef : [[${authRef}]]</p>
+    <p th:if="${authDate}"> authDate : [[${authDate}]]</p>
+    <ul th:each="items : ${listeNbrsMsg}">
+
+      <hr>
+      <h1>Id Message [[${items}]]</h1>
+
+      <!-- date message -->
+      <ul th:each="item : ${listeDateMsg}">
+        <p class="head" th:if="${item.value} == ${items}">Date message [[${item.key}]] </p>
+      </ul>
+
+      <!-- duree validite -->
+      <ul th:each="item : ${listeValDu}">
+        <p class="head" th:if="${item.value} == ${items}">Validation duration [[${item.key}]] </p>
+      </ul>
+
+      <!-- Auth request -->
+      <ul th:each="item : ${listeAuthReq}">
+        <p class="head" th:if="${item.value} == ${items}">Validation duration [[${item.key}]] </p>
+      </ul>
+
+      <!-- Barter -->
+      <ul th:each="item : ${listeRcvBarter}">
+        <p class="head" th:if="${listeRcvBarter} AND ${item.value} == ${items}">Barter recceived objects</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+
+      <ul th:each="item : ${listeSndBarter}">
+        <p class="head" th:if="${listeSndBarter} AND ${item.value} == ${items}">Barter Send objects</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+
+      <!-- Request -->
+      <ul th:each="item : ${listeObjReq}">
+        <p class="head" th:if="${listeObjReq} AND ${item.value} == ${items}">Request recceived objects</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+
+      <!-- Donation -->
+      <ul th:each="item : ${listeObjDonn}">
+        <p class="head" th:if="${listeObjDonn} AND ${item.value} == ${items}">Donnation send objects</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+
+      <!-- prev message-->
+      <ul th:each="item : ${idPrevMsg}">
+        <p class="head" th:if="${item.value} == ${items}">prev msg [[${item.key}]] </p>
+      </ul>
+
+      <!-- cat -->
+      <ul th:each="item : ${restCat}">
+        <p class="head" th:if="${restCat} AND ${item.value} == ${items}">Cat id message and date</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+      <ul th:each="item : ${listeObjCat}">
+        <p class="head" th:if="${listeObjCat} AND ${item.value} == ${items}">catigorie objects</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+
+      <!-- Nocat -->
+      <ul th:each="item : ${noCat}">
+        <p class="head" th:if="${noCat} AND ${item.value} == ${items}">NoCat id message and reason</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+
+      <!-- Err -->
+      <ul th:each="item : ${err}">
+        <p class="head" th:if="${err} AND ${item.value} == ${items}">err id message and id error and message error</p>
+        <ul th:each="iteme : ${item.key}">
+          <span th:if="${item.value} == ${items}">
+            <li>[[${iteme}]]</li>
+          </span>
+        </ul>
+      </ul>
+    </ul>
+    <hr>
+    <div>
+      <div class="form-group">
+        <form data-th-action="@{/accpetMessage}" method="post" >
+  
+          <h4>Do you Answer this Message ?</h4>
+          <select name="idMsg" id="idMsg">
+            <option th:each="items : ${listeNbrsMsg}">[[${items}]]</option>
+          </select>
+          <script>
+            $(document).ready(function () {
+  
+              $('input[type="radio"]').click(function () {
+                if ($(this).attr("value") == "yes") {
+                  $(".Box").hide('slow');
+                }
+                if ($(this).attr("value") == "no") {
+                  $(".Box").show('slow');
+  
+                }
+              });
+  
+              $('input[type="radio"]').trigger('click');  // trigger the event
+            });
+  
+          </script>
+          <div class="form-check">
+            <label for="no"> Yes </label>
+            <input type="radio" name="answerQ" value="yes" id="Yes" class="form-check-input">
+            <label for="no"> No </label>
+            <input type="radio" name="answerQ" value="no" id="No" class="form-check-input">
+          </div>
+          <div class="Box" style="color:red; font-size:16px; font-weight:bold;">
+            <label id="idMsg">ID MSG [[ ${items}]] : </label>
+            <label id="ifNoQ">Insert Raison for refuse</label>
+            <input type="text" class="form-control" name="answerMessage" placeholder="Raison X" id="ifNoQ">
+  
+  
+          </div>
+  
+          <input type="submit" value="Submit" class="btn btn-primary" />
+  
+        </form>
+        <br>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="right"></div>
+  <div id="footer">
+
+    <h2 id="name">Ramez & Ahmad</h2>
+  </div>
+
+</body>
+
+</html>

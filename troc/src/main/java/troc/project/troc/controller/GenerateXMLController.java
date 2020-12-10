@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 import java.util.List;
@@ -24,7 +23,6 @@ import org.w3c.dom.Element;
 
 import troc.project.troc.model.FileTroc;
 import troc.project.troc.model.ListMsg;
-import troc.project.troc.model.Message;
 import troc.project.troc.model.CatObjects;
 import troc.project.troc.model.ObjectRCVList;
 import troc.project.troc.model.ObjectSNDList;
@@ -32,7 +30,6 @@ import troc.project.troc.model.ObjectSNDList;
 import troc.project.troc.repositories.CatObjectRepository;
 import troc.project.troc.repositories.FileTrocRepository;
 import troc.project.troc.repositories.ListMsgRepository;
-import troc.project.troc.repositories.MessageRepository;
 import troc.project.troc.repositories.ObjectRCVListRepository;
 import troc.project.troc.repositories.ObjectSNDListRepository;
 import java.io.IOException;
@@ -397,7 +394,7 @@ public class GenerateXMLController {
                         TransformerFactory transformerFactory = TransformerFactory.newInstance();
                         Transformer transformer = transformerFactory.newTransformer();
                         DOMSource domSource = new DOMSource(document);
-                        String fileApplicationServerPath = "D:\\M1 DSC\\Document\\TrocProject\\Troc\\troc\\src\\main\\resources\\files\\sndFiles\\De "
+                        String fileApplicationServerPath = "/home/ramez/M1/DN/Troc/troc/src/main/resources/files/sndFiles/De"
                                         + lastFIle.getHeader().getTransmitter().getName() + "  "
                                         + lastFIle.getHeader().getTransmitter().getLastName() + " Vers "
                                         + lastFIle.getHeader().getReceiver().getName() + " "
